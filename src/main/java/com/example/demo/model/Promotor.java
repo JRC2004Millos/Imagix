@@ -15,7 +15,7 @@ public class Promotor {
 
     private String name;
 
-    private String correo;
+    private String email;
 
     private String clave;
 
@@ -83,12 +83,12 @@ public class Promotor {
         this.regional = regional;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getClave() {

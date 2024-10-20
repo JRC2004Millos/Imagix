@@ -7,5 +7,5 @@ import com.example.demo.model.Promotor;
 
 @Repository
 public interface PromotorRepository extends JpaRepository<Promotor, Long> {
-
+    Promotor findByEmail(String correo);
 }

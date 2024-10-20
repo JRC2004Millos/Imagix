@@ -80,7 +80,7 @@ main {
 }
 
 .login-container {
-    background-color: #4a9eda; 
+    background-color: #a891dd; 
     padding: 50px;
     border-radius: 20px;
     text-align: center;
@@ -97,7 +97,7 @@ main {
 }
 
 .login-container h2 {
-    background-color: #303b7a;
+    background-color: #583d95;
     color: white;
     padding: 20px;
     border-radius: 12px;
@@ -139,7 +139,7 @@ main {
 
 button {
     width: 100%;
-    background: linear-gradient(90deg, #ff4c4c, #ff6f6f);
+    background: linear-gradient(90deg, #583d95, #7fbddc);
     color: white;
     padding: 20px;
     border: none;
@@ -151,7 +151,7 @@ button {
 }
 
 button:hover {
-    background: linear-gradient(90deg, #ff7878, #ff4c4c);
+    background: linear-gradient(90deg, #7fbddc, #aeb4ae);
     box-shadow: 0px 8px 14px rgba(0, 0, 0, 0.3);
 }
 
