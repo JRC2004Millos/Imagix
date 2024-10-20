@@ -9,13 +9,19 @@ import com.example.demo.service.PromotorService;
 
 import jakarta.servlet.http.HttpSession;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/promotor")
 public class PromotorController {
+
     @Autowired
     private PromotorService promotorService;
 
-    
+    @GetMapping("/dashboard")
+    public String dashboard(Model model, HttpSession session) {
+        if (session.getAttribute("email") == null) {
+            return "redirect:/login";
+        }
+        return "promotor/dashboard";
+    }
+
 }

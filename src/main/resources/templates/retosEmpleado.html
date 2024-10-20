@@ -1,92 +1,102 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MIS RETOS</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/src/main/resources/static/css/retosEmpleado.css">
-</head>
-<body>
-    <input type="checkbox" id="menuToggle" class="menu-toggle">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/retosEmpleado.css" />
+  </head>
+  <body>
+    <input type="checkbox" id="menuToggle" class="menu-toggle" />
 
     <div class="sidebar" id="sidebar">
-        <div class="logo">
-            <img src="/src/main/resources/static/images/imagix.png" alt="Imagix Logo">
-        </div>
-        <nav>
-            <ul>
-                <li>
-                    <a href="retosEmpleado.html"> 
-                        <img src="/src/main/resources/static/images/retos.png" alt="Reto Imagen" class="nav-icon">
-                        <span class="link-text">Retos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="solucionEmpleado.html">
-                        <img src="/src/main/resources/static/images/solucion.png" alt="Soluciones Imagen" class="nav-icon">
-                        <span class="link-text">Soluciones</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <button class="logout">
-            <img src="/src/main/resources/static/images/boton-de-encendido-apagado.png"alt="Icono Cerrar Sesión" class="logout-icon">
-            <span class="logout-text">Cerrar Sesión</span>
-        </button>
+      <div class="logo">
+        <img src="/images/imagix.png" alt="Imagix Logo" />
+      </div>
+      <nav>
+        <ul>
+          <li>
+            <a href="reto">
+              <img src="/images/retos.png" alt="Reto Imagen" class="nav-icon" />
+              <span class="link-text">Retos</span>
+            </a>
+          </li>
+          <li>
+            <a href="solucion">
+              <img
+                src="/images/solucion.png"
+                alt="Soluciones Imagen"
+                class="nav-icon"
+              />
+              <span class="link-text">Soluciones</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <button class="logout" onclick="window.location.href='/login'">
+        <img
+          src="/images/boton-de-encendido-apagado.png"
+          alt="Icono Cerrar Sesión"
+          class="logout-icon"
+        />
+        <span class="logout-text">Cerrar Sesión</span>
+      </button>
     </div>
 
     <div class="main-content">
-        <label for="menuToggle" class="toggle-btn">
-            <img src="/src/main/resources/static/images/menu.png" alt="Menu Icon" class="menu-icon">
-        </label>
-        <div class="header">
-            <select class="filter">
-                <option value="">FILTRO</option>
-                <option value="reto1">Reto 1</option>
-                <option value="reto2">Reto 2</option>
-            </select>
-        </div>
+      <label for="menuToggle" class="toggle-btn">
+        <img src="/images/menu.png" alt="Menu Icon" class="menu-icon" />
+      </label>
+      <div class="header">
+        <select class="filter">
+          <option value="">FILTRO</option>
+          <option value="reto1">Reto 1</option>
+          <option value="reto2">Reto 2</option>
+        </select>
+      </div>
 
-        <h1 class="title">¡MIS RETOS!</h1>
+      <h1 class="title">¡MIS RETOS!</h1>
 
-        <div class="grid-container">
-            <div class="reto-card">
-                <h2 class="reto-title">Reto 1 </h2>
-                <div class="reto-content">
-                    <strong>Descripcion:</strong>
-                </div>
-            </div>
-            <div class="reto-card">
-                <h2 class="reto-title">Reto 2</h2>
-                <div class="reto-content"> <strong>Descripcion:</strong>
-                </div>
-            </div>
-            <div class="reto-card">
-                <h2 class="reto-title">Reto 3</h2>
-                <div class="reto-content">
-                    <strong>Descripcion:</strong>
-                </div>
-            </div>
-            <div class="reto-card">
-                <h2 class="reto-title">Reto 4</h2>
-                <div class="reto-content">
-                    <strong>Descripcion:</strong>
-                </div>
-            </div>
-            <div class="reto-card">
-                <h2 class="reto-title">Reto 5</h2>
-                <div class="reto-content">
-                    <strong>Descripcion:</strong>
-                </div>
-            </div>
-            <div class="reto-card">
-                <h2 class="reto-title">Reto 6</h2>
-                <div class="reto-content">
-                    <strong>Descripcion:</strong>
-                </div>
-            </div>
+      <div class="grid-container">
+        <div class="reto-card">
+          <h2 class="reto-title">Reto 1</h2>
+          <div class="reto-content">
+            <strong>Descripcion:</strong>
+          </div>
         </div>
+        <div class="reto-card">
+          <h2 class="reto-title">Reto 2</h2>
+          <div class="reto-content"><strong>Descripcion:</strong></div>
+        </div>
+        <div class="reto-card">
+          <h2 class="reto-title">Reto 3</h2>
+          <div class="reto-content">
+            <strong>Descripcion:</strong>
+          </div>
+        </div>
+        <div class="reto-card">
+          <h2 class="reto-title">Reto 4</h2>
+          <div class="reto-content">
+            <strong>Descripcion:</strong>
+          </div>
+        </div>
+        <div class="reto-card">
+          <h2 class="reto-title">Reto 5</h2>
+          <div class="reto-content">
+            <strong>Descripcion:</strong>
+          </div>
+        </div>
+        <div class="reto-card">
+          <h2 class="reto-title">Reto 6</h2>
+          <div class="reto-content">
+            <strong>Descripcion:</strong>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>

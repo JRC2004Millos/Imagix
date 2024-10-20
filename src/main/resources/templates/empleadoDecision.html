@@ -1,32 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Subir Idea o Solución</title>
-    <link rel="stylesheet" href="/src/main/resources/static/css/empleadoDecision.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="stylesheet" href="/css/empleadoDecision.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <header>
-        <div class="header-content">
-            <img src="/src/main/resources/static/images/imagix.png" alt="Logo Imagix" class="logo">
-            <input type="text" class="search-bar" placeholder="Buscar...">
-            <button class="logout">Cerrar Sesión</button>
-        </div>
+      <div class="header-content">
+        <img src="/images/imagix.png" alt="Logo Imagix" class="logo" />
+        <input type="text" class="search-bar" placeholder="Buscar..." />
+        <button class="logout">Cerrar Sesión</button>
+      </div>
     </header>
 
     <div class="main-content">
-        <h1 class="title">¿Qué deseas subir?</h1>
+      <h1 class="title">¿Qué deseas subir?</h1>
 
-        <div class="button-container">
-            <button class="idea-button" onclick="location.href='subirRetoEmpleado.html'">Subir Idea</button>
-            <button class="solution-button" onclick="location.href='subirSolucionEmpleado.html'">Subir Solución</button>
-        </div>
+      <div class="button-container">
+        <button
+          class="idea-button"
+          onclick="location.href='/proponente/subirIdea'"
+        >
+          Subir Idea
+        </button>
+        <button
+          class="solution-button"
+          onclick="location.href='/proponente/subirReto'"
+        >
+          Subir Solución
+        </button>
+      </div>
     </div>
 
     <footer>
-        <p>&copy; 2024 Imagix. Todos los derechos reservados.</p>
+      <p>&copy; 2024 Imagix. Todos los derechos reservados.</p>
     </footer>
-</body>
+  </body>
 </html>

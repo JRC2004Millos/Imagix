@@ -12,9 +12,6 @@ import com.example.demo.service.ProponenteService;
 
 import jakarta.servlet.http.HttpSession;
 
-import java.util.List;
-
-
 @Controller
 @RequestMapping("/login")
 public class LoginController {
@@ -25,12 +22,13 @@ public class LoginController {
     private ProponenteService proponenteService;
 
     @GetMapping
-    public String login(){
-       return "login";
+    public String login() {
+        return "login";
     }
 
     @PostMapping("confirmacion")
-    public String sesionIniciada(@RequestParam("email") String email, @RequestParam("password") String password,HttpSession session, Model model) {
+    public String sesionIniciada(@RequestParam("email") String email, @RequestParam("password") String password,
+            HttpSession session, Model model) {
         try {
             Promotor promotor = promotorService.findByEmail(email);
             if (promotor != null) {
@@ -41,12 +39,12 @@ public class LoginController {
                     model.addAttribute("errorMessage", "Contraseña incorrecta.");
                     return "redirect:/login";
                 }
-            } 
+            }
             Proponente proponente = proponenteService.findByEmail(email);
             if (proponente != null) {
                 if (proponente.getClave().equals(password)) {
                     session.setAttribute("proponente", proponente);
-                    return "redirect:/proponente/dashboard"; 
+                    return "redirect:/proponente";
                 } else {
                     model.addAttribute("errorMessage", "Contraseña incorrecta.");
                     return "redirect:/login";

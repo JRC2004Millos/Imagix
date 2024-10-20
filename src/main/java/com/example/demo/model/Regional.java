@@ -43,4 +43,11 @@ public class Regional {
         this.nombre = nombre;
     }
 
+    public List<Promotor> getPromotores() {
+        return promotores;
+    }
+
+    public void setPromotores(List<Promotor> promotores) {
+        this.promotores = promotores;
+    }
 }

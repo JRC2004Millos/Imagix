@@ -1,63 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CREAR RETO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/src/main/resources/static/css/crearIdea.css">
-</head>
-<body>
-    <input type="checkbox" id="menuToggle" class="menu-toggle">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/crearIdea.css" />
+  </head>
+  <body>
+    <input type="checkbox" id="menuToggle" class="menu-toggle" />
 
     <div class="sidebar" id="sidebar">
-        <div class="logo">
-            <img src="/src/main/resources/static/images/imagix.png" alt="Imagix Logo">
-        </div>
-        <nav>
-            <ul>
-                <li>
-                    <a href="retosEmpleado.html">
-                        <img src="/src/main/resources/static/images/usuario.png" alt="Perfil Imagen" class="nav-icon">
-                        <span class="link-text">Perfil</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <button class="logout">
-            <img src="/src/main/resources/static/images/boton-de-encendido-apagado.png" alt="Icono Cerrar Sesión" class="logout-icon">
-            <span class="logout-text">Cerrar Sesión</span>
-        </button>
+      <div class="logo"><img src="/images/imagix.png" alt="Imagix Logo" /></div>
+      <nav>
+        <ul>
+          <li>
+            <a href="retosEmpleado.html">
+              <img
+                src="/images/usuario.png"
+                alt="Perfil Imagen"
+                class="nav-icon"
+              />
+              <span class="link-text">Perfil</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <button class="logout">
+        <img
+          src="/images/boton-de-encendido-apagado.png"
+          alt="Icono Cerrar
+        Sesión"
+          class="logout-icon"
+        />
+        <span class="logout-text">Cerrar Sesión</span>
+      </button>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
-        <label for="menuToggle" class="toggle-btn">
-            <img src="/src/main/resources/static/images/menu.png" alt="Menu Icon" class="menu-icon">
-        </label>
+      <label for="menuToggle" class="toggle-btn">
+        <img src="/images/menu.png" alt="Menu Icon" class="menu-icon" />
+      </label>
 
-        <div class="content">
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search">
-                <button class="search-button">
-                    <img src="/src/main/resources/static/images/search.png" alt="Search Icon">
-                </button>
-            </div>
-
-            <div class="card">
-                <h2 class="card-title">¡ Ingresa el nombre de tu Reto !</h2>
-                <div class="input-container">
-                    <input type="text" placeholder="Reto..." class="input-field">
-                </div>
-                <div class="lightbulb-icon">
-                    <img src="/src/main/resources/static/images/idea.png" alt="Idea Icon">
-                </div>
-
-                <a href="ingresarProponentes.html" class="confirm-button">
-                    Continuar
-                </a>
-            </div>
+      <div class="content">
+        <div class="search-container">
+          <input type="text" class="search-input" placeholder="Search" />
+          <button class="search-button">
+            <img src="/images/search.png" alt="Search Icon" />
+          </button>
         </div>
+
+        <div class="card">
+          <h2 class="card-title">¡ Ingresa el nombre de tu Reto !</h2>
+          <div class="input-container">
+            <input type="text" placeholder="Reto..." class="input-field" />
+          </div>
+          <div class="lightbulb-icon">
+            <img src="/images/idea.png" alt="Idea Icon" />
+          </div>
+
+          <a href="subirProponentes" class="confirm-button"> Continuar </a>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>

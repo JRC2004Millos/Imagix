@@ -37,9 +37,10 @@ public class Proponente {
     @ManyToOne
     @JoinColumn(name = "cargo_id")
     private Cargo cargo;
+
     private String telefono;
 
-    @ManyToMany(mappedBy = "proponentes", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(mappedBy = "proponentes", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private List<Idea> ideas = new ArrayList<>();
 
     public Proponente() {
@@ -62,8 +63,6 @@ public class Proponente {
         this.telefono = telefono;
         this.ideas = ideas;
     }
-
-
 
     public Integer getCedula() {
         return cedula;
@@ -176,7 +175,5 @@ public class Proponente {
     public void setIdeas(List<Idea> ideas) {
         this.ideas = ideas;
     }
-
-    
 
 }
