@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -89,6 +88,7 @@ public class ProponenteController {
         // Recuperar los datos de la idea desde la sesión
         String nombreIdea = (String) session.getAttribute("nombreIdea");
         String descripcionProblema = (String) session.getAttribute("descripcionProblema");
+        @SuppressWarnings("unchecked")
         List<Proponente> proponentes = (List<Proponente>) session.getAttribute("proponentes");
 
         // Asegúrate de que cada proponente esté asociado a la sesión actual.
