@@ -1,338 +1,402 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
-    display: flex;
-    height: 100vh;
-    background-color: #f7f9fc;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+  display: flex;
+  height: 100vh;
+  background-color: #f7f9fc;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 /* Sidebar */
 .sidebar {
-    background-color: #d7e6b0;
-    width: 250px;
-    padding: 20px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 3px 0 8px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    transition: width 0.3s ease;
-    z-index: 1000;
+  background-color: #d7e6b0;
+  width: 250px;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 3px 0 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease;
+  z-index: 1000;
 }
 
 .menu-toggle:checked ~ .sidebar {
-    width: 50px;
+  width: 50px;
 }
 
 .menu-toggle:checked ~ .sidebar .logo {
-    display: none;
+  display: none;
 }
 
 .logo {
-    margin-top: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo img {
-    width: 110px;
-    height: auto;
-    transition: all 0.3s ease;
+  width: 110px;
+  height: auto;
+  transition: all 0.3s ease;
 }
 
 .menu-toggle:checked ~ .sidebar .logo img {
-    width: 60px;
+  width: 60px;
 }
 
 /* Navigation */
 nav {
-    margin-top: auto;
-    margin-bottom: auto;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
 }
 
 nav ul li {
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 nav ul li a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: #333;
-    transition: background-color 0.3s ease;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.3s ease;
+  gap: 8px;
 }
 
 nav ul li a:hover {
-    background-color: #c9ddb1;
-    border-radius: 10px;
+  background-color: #c9ddb1;
+  border-radius: 10px;
 }
 
 nav ul li a img.nav-icon {
-    width: 70px;
-    height: 70px;
-    transition: width 0.3s, height 0.3s;
+  width: 70px;
+  height: 70px;
+  transition: width 0.3s, height 0.3s;
 }
 
 .menu-toggle:checked ~ .sidebar nav ul li a img.nav-icon {
-    width: 40px;
-    height: 40px;
+  width: 40px;
+  height: 40px;
 }
 
 nav ul li a span {
-    font-size: 22px;
-    font-weight: 600;
-    transition: opacity 0.3s;
+  font-size: 22px;
+  font-weight: 600;
+  transition: opacity 0.3s;
 }
 
 .menu-toggle:checked ~ .sidebar nav ul li a span {
-    opacity: 0;
-    pointer-events: none;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Logout Button */
 .logout {
-    background-color: #a4c639;
-    width: 200px;
-    height: 60px;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    cursor: pointer;
-    margin-top: auto;
-    margin-bottom: 20px;
-    transition: background-color 0.3s, width 0.3s, height 0.3s;
+  background-color: #a4c639;
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  margin-top: auto;
+  margin-bottom: 20px;
+  transition: background-color 0.3s, width 0.3s, height 0.3s;
 }
 
 .logout img.logout-icon {
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
 }
 
 .logout:hover {
-    background-color: #8fb52b;
+  background-color: #8fb52b;
 }
 
 .menu-toggle:checked ~ .sidebar .logout {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  justify-content: center;
 }
 
 .menu-toggle:checked ~ .sidebar .logout span.logout-text {
-    display: none;
+  display: none;
 }
 
 /* Main Content */
 .main-content {
-    margin-left: 250px;
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 50px;
-    transition: margin-left 0.3s ease;
-    padding: 20px;
+  margin-left: 250px;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+  transition: margin-left 0.3s ease;
+  padding: 20px;
 }
 
 .menu-toggle:checked ~ .main-content {
-    margin-left: 50px;
+  margin-left: 50px;
 }
 
 /* Toggle Button */
 .toggle-btn {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1100;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
 }
 
 .menu-icon {
-    width: 30px;
-    height: auto;
+  width: 30px;
+  height: auto;
 }
 
 /* Content Section */
 .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 50px;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  text-align: center;
 }
 
 .search-container {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 30px;
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
 }
 
 .search-input {
-    width: 500px;
-    padding: 18px;
-    font-size: 22px;
-    border: 2px solid #c9ddb1;
-    border-radius: 12px;
-    outline: none;
-    transition: box-shadow 0.3s ease;
+  width: 500px;
+  padding: 18px;
+  font-size: 22px;
+  border: 2px solid #c9ddb1;
+  border-radius: 12px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
 }
 
 .search-input:focus {
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 .search-button {
-    background-color: #a4c639;
-    border: none;
-    padding: 15px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+  background-color: #a4c639;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .search-button:hover {
-    background-color: #8fb52b;
-    transform: scale(1.1);
+  background-color: #8fb52b;
+  transform: scale(1.1);
 }
 
 .search-button img {
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
 }
 
 /* Card */
 .card {
-    background-color: #fff;
-    padding: 80px;
-    border-radius: 35px;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 900px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
+  background-color: #fff;
+  padding: 80px;
+  border-radius: 35px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 900px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
 }
 
 .card-title {
-    font-size: 36px;
-    margin-bottom: 20px;
-    font-weight: bold;
+  font-size: 36px;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
 .input-container {
-    background-color: #d7e6b0;
-    padding: 30px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    width: 85%;
-    margin-bottom: 15px;
+  background-color: #d7e6b0;
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 85%;
+  margin-bottom: 15px;
 }
 
 .input-field {
-    width: 100%;
-    padding: 18px;
-    font-size: 22px;
-    border: none;
-    border-radius: 12px;
-    outline: none;
+  width: 100%;
+  padding: 18px;
+  font-size: 22px;
+  border: none;
+  border-radius: 12px;
+  outline: none;
 }
 
 .confirm-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 40px;
-    font-size: 24px;
-    font-weight: bold;
-    border-radius: 25px;
-    transition: background-color 0.3s, transform 0.2s;
-    margin-top: 5px;
-    text-align: center;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  background-color: #4caf50;
+  color: white;
+  padding: 15px 40px;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 25px;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 5px;
+  text-align: center;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .confirm-button:hover {
-    background-color: #45a049;
-    transform: scale(1.05);
-    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2);
+  background-color: #45a049;
+  transform: scale(1.05);
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2);
 }
 
 .confirm-button:active {
-    transform: scale(0.95);
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+  transform: scale(0.95);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 .user-icon img {
-    width: 60px; 
-    height: 60px;
-    transition: width 0.3s, height 0.3s;
+  width: 60px;
+  height: 60px;
+  transition: width 0.3s, height 0.3s;
 }
 
-
 .user-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1px;
 }
 
 .add-proponent-button {
-    background-color: #a4c639;
-    color: white; 
-    padding: 10px 20px;
-    font-size: 18px; 
-    font-weight: bold; 
-    border: none; 
-    border-radius: 10px; 
-    transition: background-color 0.3s ease, transform 0.2s ease; 
-    cursor: pointer; 
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  background-color: #a4c639;
+  color: white;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .add-proponent-button:hover {
-    background-color: #8fb52b; 
-    transform: scale(1.05); 
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
+  background-color: #8fb52b;
+  transform: scale(1.05);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
 }
 
 .add-proponent-button:active {
-    transform: scale(0.95); 
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1); 
+  transform: scale(0.95);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
 }
 
+.input-container {
+  background-color: #d7e6b0;
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column; /* Asegura que los elementos se coloquen uno debajo del otro */
+  align-items: stretch;
+  gap: 15px; /* Espacio entre los selects */
+  width: 85%;
+  margin-bottom: 15px;
+}
+
+.proponente-select-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.proponente-select {
+  width: 100%; /* Ajusta el select al tamaño del contenedor */
+  max-width: 400px; /* Limita el ancho máximo */
+  padding: 12px;
+  font-size: 18px;
+  border: 2px solid #c9ddb1;
+  border-radius: 8px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.proponente-select:focus {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Asegura que el nuevo select se añada correctamente debajo */
+#proponentes-container {
+  display: flex;
+  flex-direction: column; /* Cada nuevo select se coloca en una nueva fila */
+  gap: 15px;
+}
+
+.add-proponent-button {
+  align-self: flex-start; /* Alinea el botón al inicio del contenedor */
+  background-color: #a4c639;
+  color: white;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-proponent-button:hover {
+  background-color: #8fb52b;
+  transform: scale(1.05);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.add-proponent-button:active {
+  transform: scale(0.95);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+}

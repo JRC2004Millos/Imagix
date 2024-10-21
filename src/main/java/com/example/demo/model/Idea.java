@@ -18,6 +18,7 @@ public class Idea {
     @Id
     @GeneratedValue
     Long id;
+
     String estado;
     String responsable;
     Date fechaCreacion;
@@ -34,7 +35,7 @@ public class Idea {
     @JoinColumn(name = "gerencia_id")
     private Gerencia gerencia;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private List<Proponente> proponentes;
 
     public Idea() {
@@ -170,6 +171,5 @@ public class Idea {
     public void setResponsable(String responsable) {
         this.responsable = responsable;
     }
-    
-    
+
 }

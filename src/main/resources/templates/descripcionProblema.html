@@ -40,7 +40,6 @@
       </button>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
       <label for="menuToggle" class="toggle-btn">
         <img src="/images/menu.png" alt="Menu Icon" class="menu-icon" />
@@ -56,14 +55,20 @@
 
         <div class="card">
           <h2 class="card-title">Ingrese una breve descripción del problema</h2>
-          <div class="input-container">
-            <textarea
-              class="input-field"
-              placeholder="Descripción..."
-            ></textarea>
-          </div>
 
-          <a href="descripcionSolucion" class="confirm-button"> Continuar </a>
+          <!-- Formulario para enviar la descripción -->
+          <form action="/proponente/descripcionProblema" method="post">
+            <div class="input-container">
+              <textarea
+                name="descripcionProblema"
+                class="input-field"
+                placeholder="Descripción..."
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="confirm-button">Continuar</button>
+          </form>
         </div>
       </div>
     </div>

@@ -6,7 +6,6 @@
     <title>DESCRIPCION SOLUCION</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
-      rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/descripcionSolucion.css" />
   </head>
@@ -41,7 +40,6 @@
       </button>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
       <label for="menuToggle" class="toggle-btn">
         <img src="/images/menu.png" alt="Menu Icon" class="menu-icon" />
@@ -57,16 +55,22 @@
 
         <div class="card">
           <h2 class="card-title">
-            Ingrese una breve descripción de la solucion
+            Ingrese una breve descripción de la solución
           </h2>
-          <div class="input-container">
-            <textarea
-              class="input-field"
-              placeholder="Descripción..."
-            ></textarea>
-          </div>
 
-          <a href="solucion" class="confirm-button"> Continuar </a>
+          <!-- Formulario para enviar la descripción de la solución -->
+          <form action="/proponente/descripcionSolucion" method="post">
+            <div class="input-container">
+              <textarea
+                name="descripcionSolucion"
+                class="input-field"
+                placeholder="Descripción..."
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="confirm-button">Continuar</button>
+          </form>
         </div>
       </div>
     </div>

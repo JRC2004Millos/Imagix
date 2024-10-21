@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,11 +9,12 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/ingresarProponentes.css" />
+    <script defer src="/js/proponentes.js"></script>
+    <!-- JavaScript externo -->
   </head>
   <body>
     <input type="checkbox" id="menuToggle" class="menu-toggle" />
 
-    <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
       <div class="logo">
         <img src="/images/imagix.png" alt="Imagix Logo" />
@@ -42,44 +43,43 @@
       </button>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
       <label for="menuToggle" class="toggle-btn">
         <img src="/images/menu.png" alt="Menu Icon" class="menu-icon" />
       </label>
 
       <div class="content">
-        <div class="search-container">
-          <input
-            type="text"
-            class="search-input"
-            placeholder="Buscar proponente"
-          />
-          <button class="search-button">
-            <img src="/images/search.png" alt="Search Icon" />
-          </button>
-        </div>
-
         <div class="card">
           <h2 class="card-title">Ingresa los proponentes</h2>
-          <div class="input-container">
-            <input
-              type="text"
-              placeholder="Nombre del proponente..."
-              class="input-field"
-            />
-            <button class="add-proponent-button">
+
+          <form
+            action="/proponente/subirProponentes"
+            method="post"
+            id="proponenteForm"
+          >
+            <div id="proponentes-container" class="input-container">
+              <!-- Primer select de proponente -->
+              <div class="proponente-select-wrapper">
+                <select class="proponente-select" name="proponentesIds">
+                  <option
+                    th:each="proponente : ${proponentes}"
+                    th:value="${proponente.id}"
+                    th:text="${proponente.nombre}"
+                  ></option>
+                </select>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              class="add-proponent-button"
+              onclick="agregarSelect()"
+            >
               Añadir más proponentes +
             </button>
-          </div>
-          <div class="user-icon">
-            <img
-              src="/images/cuaderno-cerrado-y-boligrafo.png"
-              alt="User Icon"
-            />
-          </div>
 
-          <a href="descripcionProblema" class="confirm-button"> Confirmar </a>
+            <button type="submit" class="confirm-button">Confirmar</button>
+          </form>
         </div>
       </div>
     </div>

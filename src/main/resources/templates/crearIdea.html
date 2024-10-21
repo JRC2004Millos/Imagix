@@ -57,14 +57,25 @@
 
         <div class="card">
           <h2 class="card-title">¡ Ingresa el nombre de tu idea !</h2>
-          <div class="input-container">
-            <input type="text" placeholder="Idea..." class="input-field" />
-          </div>
-          <div class="lightbulb-icon">
-            <img src="/images/idea.png" alt="Idea Icon" />
-          </div>
 
-          <a href="subirProponentes" class="confirm-button"> Continuar </a>
+          <!-- Formulario para enviar la idea al controlador -->
+          <form action="/proponente/subirIdea" method="post">
+            <div class="input-container">
+              <input
+                type="text"
+                name="nombreIdea"
+                placeholder="Idea..."
+                class="input-field"
+                required
+              />
+            </div>
+            <div class="lightbulb-icon">
+              <img src="/images/idea.png" alt="Idea Icon" />
+            </div>
+
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="confirm-button">Continuar</button>
+          </form>
         </div>
       </div>
     </div>
