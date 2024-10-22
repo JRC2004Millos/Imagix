@@ -105,7 +105,7 @@ public class ProponenteController {
         idea.setSituacionDetectada(descripcionProblema);
         idea.setProponentes(proponentesGestionados); // Usar la lista gestionada
         idea.setFechaCreacion(new Date(System.currentTimeMillis()));
-        idea.setEstado("Pendiente");
+        idea.setEstado("Propuesta");
         idea.setEstadoImplementada(false);
         // Recuperar el objeto proponente de la sesión y convertirlo a su tipo correcto
         Proponente proponente = (Proponente) session.getAttribute("proponente");
