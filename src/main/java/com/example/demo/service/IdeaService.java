@@ -24,4 +24,7 @@ public interface IdeaService {
 
     List<Idea> findByGerenciaIdAndEstado(Long gerenciaId, String estado);
 
+    // Método para buscar ideas por ID de gerente
+    List<Idea> findByGerenteId(Long gerenteId); 
+
 }
