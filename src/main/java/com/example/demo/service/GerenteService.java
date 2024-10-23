@@ -11,7 +11,6 @@ public interface GerenteService {
 
     Gerente findByEmail(String email);
     
-    List<Idea> findByGerenteId(Long gerenteId);
 
     void aprobarIdea(Long ideaId, Long gerenteId);
     

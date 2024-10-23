@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.Gerencia;
+import com.example.demo.model.Gerente;
 import com.example.demo.model.Idea;
 
 @Service
@@ -24,7 +25,7 @@ public interface IdeaService {
 
     List<Idea> findByGerenciaIdAndEstado(Long gerenciaId, String estado);
 
-    // Método para buscar ideas por ID de gerente
-    List<Idea> findByGerenteId(Long gerenteId); 
+   
+    
 
 }

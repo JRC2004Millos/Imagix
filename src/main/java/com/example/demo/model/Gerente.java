@@ -1,20 +1,18 @@
 package com.example.demo.model;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
 
+@Entity
 public class Gerente {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
     private String email;
-
     private String clave;
 
     @ManyToOne
@@ -25,15 +23,21 @@ public class Gerente {
     @JoinColumn(name = "regional_id")
     private Regional regional;
 
+    @ManyToOne
+    @JoinColumn(name = "gerencia_id")
+    private Gerencia gerencia;
+
     public Gerente() {
     }
 
-    public Gerente(String name, Cargo cargo, Regional regional) {
+    public Gerente(String name, Cargo cargo, Regional regional, Gerencia gerencia) {
         this.name = name;
         this.cargo = cargo;
         this.regional = regional;
+        this.gerencia = gerencia;
     }
 
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -80,5 +84,13 @@ public class Gerente {
 
     public void setRegional(Regional regional) {
         this.regional = regional;
+    }
+
+    public Gerencia getGerencia() {
+        return gerencia;
+    }
+
+    public void setGerencia(Gerencia gerencia) {
+        this.gerencia = gerencia;
     }
 }
