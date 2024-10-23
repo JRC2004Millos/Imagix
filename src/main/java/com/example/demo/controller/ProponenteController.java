@@ -40,7 +40,7 @@ public class ProponenteController {
     // GET para mostrar la vista de subir idea
     @GetMapping("/subirIdea")
     public String subirIdea() {
-        return "crearIdea";
+        return "crearIdeaoCrearReto";
     }
 
     // POST para recibir los datos del formulario de subir idea (formulario1)

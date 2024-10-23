@@ -369,4 +369,45 @@ nav ul li {
     background-color: #c82333;
 }
 
+.spinner {
+    width: 100%;                 /* Ocupa todo el espacio disponible */
+    padding: 10px;               /* Espaciado interno */
+    font-size: 16px;             /* Tamaño de fuente */
+    border: 1px solid #ccc;      /* Borde claro */
+    border-radius: 8px;          /* Bordes redondeados */
+    background-color: #f9f9f9;   /* Fondo claro */
+    color: #333;                 /* Texto oscuro */
+    appearance: none;            /* Elimina el estilo por defecto del navegador */
+    -webkit-appearance: none;    /* Soporte para Safari */
+    -moz-appearance: none;       /* Soporte para Firefox */
+    cursor: pointer;             /* Cambia el cursor al pasar */
+}
+
+/* Cambia el fondo y borde al pasar el mouse */
+.spinner:hover {
+    border-color: #888;          /* Borde más oscuro al pasar */
+    background-color: #fff;      /* Fondo blanco al pasar */
+}
+
+/* Cambia el color del borde al enfocarse */
+.spinner:focus {
+    border-color: #4CAF50;       /* Borde verde al enfocar */
+    outline: none;               /* Elimina el contorno por defecto */
+}
+
+/* Opciones del select desplegado */
+.spinner option {
+    padding: 10px;               /* Espaciado interno de las opciones */
+    background-color: #fff;      /* Fondo blanco */
+    color: #333;                 /* Color del texto */
+}
+
+/* Añadir ícono de flecha hacia abajo */
+.spinner {
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="gray"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+}
+
 
