@@ -41,10 +41,7 @@ public class GerenteServiceImpl implements GerenteService {
     }
     
 
-    @Override
-    public List<Idea> findByGerenteId(Long gerenteId) {
-        return ideaRepository.findByGerenteId(gerenteId);
-    }
+  
     public void rechazarIdea(Long ideaId, Long gerenteId) {
         Idea idea = ideaRepository.findById(ideaId).orElse(null);
         if (idea != null && idea.getEstado().equals("En revisión por gerente")) {

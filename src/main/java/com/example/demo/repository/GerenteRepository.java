@@ -14,13 +14,6 @@ public interface GerenteRepository extends JpaRepository<Gerente, Long> {
      // Encuentra un gerente por su email
     Gerente findByEmail(String email);
 
-    // Encuentra gerentes por nombre
-    List<Gerente> findByNombre(String nombre);
-
-    // Encuentra gerentes por cargo
-    List<Gerente> findByCargo(Cargo cargo);
-
-    // Encuentra gerentes por regional
-    List<Gerente> findByRegional(Regional regional);
+    
 
 }

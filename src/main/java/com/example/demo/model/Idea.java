@@ -30,7 +30,7 @@ public class Idea {
     float calificacion;
     String estadoCalificacion;
     String comentario;
-
+    
 
     @ManyToOne
     @JoinColumn(name = "gerencia_id")
