@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,7 @@
 </head>
 <body>
 
+    <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="logo">
             <img src="/images/imagix.png" alt="Logo">
@@ -29,13 +30,14 @@
         <button class="Btn" onclick="location.href='/login'">
             <div class="sign">
                 <svg viewBox="0 0 512 512">
-                    <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                    <path d="..."></path>
                 </svg>
             </div>
             <div class="text">Cerrar Sesión</div>
         </button>
     </div>
 
+    <!-- Contenido principal -->
     <div class="content">
         <h1 th:text="'Detalles de la Idea: ' + ${idea.nombreIdea}">Detalles de la Idea</h1>
 
@@ -43,7 +45,16 @@
             <table class="idea-details-table">
                 <tr>
                     <th>Estado</th>
-                    <td th:text="${idea.estado}">Estado</td>
+                    <td>
+                        <select name="estado" id="estado-pinner" class="spinner">
+                            <option th:each="estado : ${estados}" 
+                            th:value="${estado}"
+                            th:text="${estado}"
+                            th:select="${estado == idea.estado}">
+                            </option>
+                        </select>
+                    </td>
+                    <!--<td th:text="${idea.estado}">Estado</td>-->
                 </tr>
                 <tr>
                     <th>Responsable</th>
@@ -69,9 +80,10 @@
                     <th>Estado Implementada</th>
                     <td th:text="${idea.estadoImplementada ? 'Sí' : 'No'}">Estado Implementada</td>
                 </tr>
+
                 <tr>
                     <th>Calificación</th>
-                    <td th:text="${idea.calificacion}">Calificación</td>
+                    <td><span id="calificacion-actual" th:text="${idea.calificacion}">5.0</span></td>
                 </tr>
                 <tr>
                     <th>Estado de Calificación</th>
@@ -93,18 +105,27 @@
                         </ul>
                     </td>
                 </tr>
+
             </table>
         </div>
 
-        <!-- Botones de Aceptar y Rechazar -->
-        <div class="action-buttons">
-            <button class="accept-button">Aceptar</button>
+         <!-- Botones de Aceptar y Rechazar -->
+         <div class="action-buttons">
+            <button id="btn-aceptar" class="accept-button">Aceptar</button>
             <button class="reject-button">Rechazar</button>
         </div>
 
-        
-        <button onclick="history.back()" class="back-button">Volver</button>
+        <!-- Barra de calificación -->
+        <div class="rating-container">
+            <input type="range" min="0" max="10" step="0.1" th:value="${idea.calificacion}" id="rating-slider" />
+            <div class="rating-label">Nueva Calificación: <span id="rating-value" th:text="${idea.calificacion}">5.0</span></div>
+        </div>
+
+        <div class="action-buttons">
+            <button onclick="history.back()" class="back-button">Volver</button>
+        </div>
     </div>
 
+    <script src="/js/barraCalificacion.js"></script>
 </body>
 </html>

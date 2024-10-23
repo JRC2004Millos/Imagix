@@ -11,13 +11,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import java.util.Arrays;
+import java.util.List;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/promotor")
+@CrossOrigin("http://localhost:8100")
 public class PromotorController {
 
     // @Autowired
@@ -78,9 +85,64 @@ public class PromotorController {
         Idea idea = ideaService.findById(id);
         model.addAttribute("idea", idea);
 
+        List<String> estados = Arrays.asList("Banco de Ideas", "Devolver al Proponente", "Documentada para Comité",
+                "En Desarrollo", "Enviada a Cliente Interno", "Enviada a IMAGIX", "Exito Innovador",
+                "Exito Innovador de Alto Impacto", "Filtro para Comité", "Mejor Idea", "No aplica para el programa",
+                " No viable para implementar", "Propuesta");
+
         Promotor promotor = (Promotor) session.getAttribute("promotor");
         model.addAttribute("promotor", promotor);
+        model.addAttribute("estados", estados);
+
         return "detalleIdea";
+    }
+
+    /*
+     * /
+     * 
+     * @PutMapping("idea/{id}")
+     * public String actualizarCalificacion(@PathVariable ("id") Long
+     * id, @RequestBody Idea nuevaIdea, Model model) {
+     * Idea ideaExistente = ideaService.findById(id);
+     * if(ideaExistente == null){
+     * throw new RuntimeException("Idea no encontrada con id" + id);
+     * }
+     * 
+     * ideaExistente.setCalificacion(nuevaIdea.getCalificacion());
+     * ideaService.save(ideaExistente);
+     * 
+     * model.addAttribute("idea", ideaExistente);
+     * return "detalleIdea";
+     * }
+     */
+
+    @PutMapping("idea/{id}")
+    @ResponseBody
+    public String actualizarCalificacion(@PathVariable("id") Long id, @RequestBody Idea nuevaIdea) {
+        Idea ideaExistente = ideaService.findById(id);
+
+        if (ideaExistente == null) {
+            return "Idea no encontrada";
+        }
+
+        ideaExistente.setCalificacion((nuevaIdea.getCalificacion()));
+        ideaService.save(ideaExistente);
+
+        return "Calificación actualizada";
+    }
+
+    @PutMapping("idea/{id}/estado")
+    @ResponseBody
+    public String actualizarEstado(@PathVariable("id") Long id, @RequestBody Idea nuevaIdea) {
+        Idea ideaExistente = ideaService.findById(id);
+
+        if (ideaExistente == null) {
+            return "Idea no encontrada";
+        }
+
+        ideaExistente.setEstado(nuevaIdea.getEstado());
+        ideaService.save(ideaExistente);
+        return "Estado actualizado correctamente";
     }
 
 }
