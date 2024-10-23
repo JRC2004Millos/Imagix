@@ -15,4 +15,9 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
     List<Idea> findByGerenciaAndEstado(Gerencia gerencia, String estado);
 
     List<Idea> findByGerenciaIdAndEstado(Long gerenciaId, String estado);
+    
+     // Método para buscar ideas por ID de gerente
+     List<Idea> findByGerenteId(Long gerenteId);
+
+    
 }
