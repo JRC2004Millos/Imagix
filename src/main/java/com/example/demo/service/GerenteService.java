@@ -14,4 +14,6 @@ public interface GerenteService {
     List<Idea> findByGerenteId(Long gerenteId);
 
     void aprobarIdea(Long ideaId, Long gerenteId);
+    
+    void rechazarIdea(Long ideaId, Long gerenteId);
 }
