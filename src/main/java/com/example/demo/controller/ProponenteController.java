@@ -39,7 +39,14 @@ public class ProponenteController {
 
     // GET para mostrar la vista de subir idea
     @GetMapping("/subirIdea")
-    public String subirIdea() {
+    public String subirIdea(HttpSession session, Model model) {
+        Proponente proponente = (Proponente) session.getAttribute("proponente");
+
+        if(proponente==null){
+            return "redirect:/login";
+        }
+
+        model.addAttribute("proponente", proponente);
         return "crearIdeaoCrearReto";
     }
 
@@ -55,7 +62,16 @@ public class ProponenteController {
 
     // GET para mostrar la vista de ingresar la descripción del problema
     @GetMapping("/descripcionProblema")
-    public String subirDescripcion() {
+    public String subirDescripcion(HttpSession session, Model model ) {
+        
+        Proponente proponente = (Proponente) session.getAttribute("proponente");
+
+        if(proponente==null){
+            return "redirect:/login";
+        }
+
+        model.addAttribute("proponente", proponente);
+
         return "descripcionProblema";
     }
 
@@ -72,7 +88,14 @@ public class ProponenteController {
 
     // GET para mostrar la vista de ingresar la descripción de la solución
     @GetMapping("/descripcionSolucion")
-    public String subirSolucion() {
+    public String subirSolucion(HttpSession session, Model model ) {
+        Proponente proponente = (Proponente) session.getAttribute("proponente");
+
+        if(proponente==null){
+            return "redirect:/login";
+        }
+
+        model.addAttribute("proponente", proponente);
         return "descripcionSolucion";
     }
 
@@ -144,7 +167,15 @@ public class ProponenteController {
 
     // GET para mostrar la vista de subir reto
     @GetMapping("/subirReto")
-    public String subirReto() {
+    public String subirReto(HttpSession session, Model model) {
+
+        Proponente proponente = (Proponente) session.getAttribute("proponente");
+
+        if(proponente==null){
+            return "redirect:/login";
+        }
+
+        model.addAttribute("proponente", proponente);
         return "crearReto";
     }
 
@@ -157,7 +188,15 @@ public class ProponenteController {
 
     // GET para mostrar la vista de ingresar proponentes
     @GetMapping("/subirProponentes")
-    public String subirProponentes(Model model) {
+    public String subirProponentes(Model model, HttpSession session) {
+
+        Proponente proponente = (Proponente) session.getAttribute("proponente");
+
+        if(proponente==null){
+            return "redirect:/login";
+        }
+        
+        model.addAttribute("proponente", proponente);
         model.addAttribute("proponentes", proponenteService.findAll());
         return "ingresarProponentes";
     }

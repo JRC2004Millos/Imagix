@@ -1,320 +1,316 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100vh;
-    background-color: #f7f9fc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  background-color: #ffffff; /* Fondo blanco */
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #d7e6b0;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    position: relative;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #4a90e2; /* Azul para el header */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  width: 100%;
 }
 
 .header-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.logo {
-    width: 150px;
-    margin-left: 20px;
-}
-
-.search-bar {
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 25px;
-    font-size: 16px;
-    width: 300px;
-    background-color: white;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s ease;
-    margin-right: auto; 
-    margin-left: 20px;
+.header-content img {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  width: 150px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+  margin-right: auto; 
+  margin-left: 20px;
 }
 
 .search-bar:focus {
-    border-color: #7fbcff;
-    outline: none;
+  border-color: #7fbcff;
+  outline: none;
 }
 
 .logout {
-    background-color: #a4c639;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    margin-right: 20px; 
+  background-color: #a4c639; /* Color de logout */
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-right: 20px; 
 }
 
 .logout:hover {
-    background-color: #8fb52b;
+  background-color: #8fb52b;
 }
 
 .main-content {
-    text-align: center;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+}
+
+.card {
+  background-color: #f7f9fc;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; /* Centrar el card */
+  width: 70%; /* Ancho del card */
 }
 
 .title {
-    font-size: 40px;
-    color: #333;
-    margin-bottom: 40px;
-    font-weight: 500;
+  font-size: 30px; /* Tamaño de la pregunta */
+  color: #333;
+  margin-bottom: 20px; /* Espacio entre la pregunta y los botones */
+  font-weight: 600;
 }
 
 .button-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 20px; 
+  display: flex;
+  justify-content: center;
+  gap: 40px; /* Espacio entre botones */
+  margin-bottom: 20px; 
 }
 
 .idea-button, .solution-button {
-    padding: 20px 40px;
-    border: none;
-    border-radius: 25px;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 450px; /* Ancho del botón aumentado */
+  height: 450px; /* Alto del botón aumentado */
+  border: none;
+  border-radius: 50%; /* Botón circular */
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; /* Alinear texto debajo de la imagen */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
 .idea-button {
-    background-color: #8fb52b;
-    color: white;
+  background-color: #8fb52b; /* Verde para idea */
+  color: white;
 }
 
 .solution-button {
-    background-color: #4a90e2;
-    color: white;
+  background-color: #4a90e2; /* Azul para solución */
+  color: white;
 }
 
 .idea-button:hover, .solution-button:hover {
-    transform: scale(1.05);
+  transform: scale(1.05); /* Efecto de escalado al pasar el ratón */
 }
 
-.idea-button:focus, .solution-button:focus {
-    outline: none;
-    transform: scale(1.05);
+.main-content .icon {
+  width: 200px; /* Tamaño de la imagen */
+  height: 200px; /* Tamaño de la imagen */
 }
 
 footer {
-    background-color: #d7e6b0;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+  background-color: #4a90e2; /* Azul para el footer */
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  bottom: 0;
 }
 
 footer p {
-    margin: 0;
-    font-size: 14px;
-    color: #333;
+  margin: 0;
+  font-size: 14px;
+  color: #fff; /* Color de texto blanco en el footer */
 }
-/* From Uiverse.io by Lealdos */ 
+
+/* Desde Uiverse.io por Lealdos */ 
 .Btn {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 45px;
-    height: 45px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition-duration: 0.3s;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-    background-color: RGB(29, 185, 84);
-  }
-  
-  /* plus sign */
-  .sign {
-    width: 100%;
-    transition-duration: 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .sign svg {
-    width: 18px;
-  }
-  
-  .sign svg path {
-    fill: black;
-  }
-  /* text */
-  .text {
-    position: absolute;
-    right: 0%;
-    width: 0%;
-    opacity: 0;
-    color: black;
-    font-size: 1.2em;
-    font-weight: 600;
-    transition-duration: 0.3s;
-  }
-  /* hover effect on button width */
-  .Btn:hover {
-    width: 125px;
-    border-radius: 40px;
-    transition-duration: 0.3s;
-  }
-  
-  .Btn:hover .sign {
-    width: 30%;
-    transition-duration: 0.3s;
-    padding-left: 20px;
-  }
-  /* hover effect button's text */
-  .Btn:hover .text {
-    opacity: 1;
-    width: 70%;
-    transition-duration: 0.3s;
-    padding-right: 10px;
-  }
-  /* button click effect*/
-  .Btn:active {
-    transform: translate(2px, 2px);
-  }
-  /* From Uiverse.io by abrahamcalsin */ 
-.card-client {
-    background: #2cb5a0;
-    width: 13rem;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border: 4px solid #7cdacc;
-    box-shadow: 0 6px 10px rgba(207, 212, 222, 1);
-    border-radius: 10px;
-    text-align: center;
-    color: #fff;
-    font-family: "Poppins", sans-serif;
-    transition: all 0.3s ease;
-  }
-  
-  .card-client:hover {
-    transform: translateY(-10px);
-  }
-  
-  .user-picture {
-    overflow: hidden;
-    object-fit: cover;
-    width: 5rem;
-    height: 5rem;
-    border: 4px solid #7cdacc;
-    border-radius: 999px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-  }
-  
-  .user-picture svg {
-    width: 2.5rem;
-    fill: currentColor;
-  }
-  
-  .name-client {
-    margin: 0;
-    margin-top: 20px;
-    font-weight: 600;
-    font-size: 18px;
-  }
-  
-  .name-client span {
-    display: block;
-    font-weight: 200;
-    font-size: 16px;
-  }
-  
-  .social-media:before {
-    content: " ";
-    display: block;
-    width: 100%;
-    height: 2px;
-    margin: 20px 0;
-    background: #7cdacc;
-  }
-  
-  .social-media a {
-    position: relative;
-    margin-right: 15px;
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  .social-media a:last-child {
-    margin-right: 0;
-  }
-  
-  .social-media a svg {
-    width: 1.1rem;
-    fill: currentColor;
-  }
-  
-  /*-- Tooltip Social Media --*/
-  .tooltip-social {
-    background: #262626;
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    padding: 0.5rem 0.4rem;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    opacity: 0;
-    pointer-events: none;
-    transform: translate(-50%, -90%);
-    transition: all 0.2s ease;
-    z-index: 1;
-  }
-  
-  .tooltip-social:after {
-    content: " ";
-    position: absolute;
-    bottom: 1px;
-    left: 50%;
-    border: solid;
-    border-width: 10px 10px 0 10px;
-    border-color: transparent;
-    transform: translate(-50%, 100%);
-  }
-  
-  .social-media a .tooltip-social:after {
-    border-top-color: #262626;
-  }
-  
-  .social-media a:hover .tooltip-social {
-    opacity: 1;
-    transform: translate(-50%, -130%);
-  }
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: RGB(29, 185, 84);
+}
+
+.sign {
+  width: 100%;
+  transition-duration: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign svg {
+  width: 18px;
+}
+
+.sign svg path {
+  fill: black;
+}
+
+/* Texto */
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: black;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+/* Efecto hover en el ancho del botón */
+.Btn:hover {
+  width: 125px;
+  border-radius: 40px;
+  transition-duration: 0.3s;
+}
+
+.Btn:hover .sign {
+  width: 30%;
+  transition-duration: 0.3s;
+  padding-left: 20px;
+}
+
+/* Efecto hover en el texto del botón */
+.Btn:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: 0.3s;
+  padding-right: 10px;
+}
+
+/* Efecto al hacer clic en el botón */
+.Btn:active {
+  transform: translate(2px, 2px);
+}
+
+.user-picture {
+  overflow: hidden;
+  object-fit: cover;
+  width: 5rem;
+  height: 5rem;
+  border: 4px solid #7cdacc;
+  border-radius: 999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.user-picture svg {
+  width: 2.5rem;
+  fill: currentColor;
+}
+
+.name-client {
+  margin: 0;
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.name-client span {
+  display: block;
+  font-weight: 200;
+  font-size: 16px;
+}
+
+.social-media:before {
+  content: " ";
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin: 20px 0;
+  background: #7cdacc;
+}
+
+.social-media a {
+  position: relative;
+  margin-right: 15px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.social-media a:last-child {
+  margin-right: 0;
+}
+
+.social-media a svg {
+  width: 1.1rem;
+  fill: currentColor;
+}
+
+/* Tooltip Social Media */
+.tooltip-social {
+  background: #262626;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  padding: 0.5rem 0.4rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -90%);
+  transition: all 0.2s ease;
+  z-index: 1;
+}
+
+.tooltip-social:after {
+  content: " ";
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  border: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: transparent;
+  transform: translate(-50%, 100%);
+}
+
+.social-media a .tooltip-social:after {
+  border-top-color: #262626;
+}
+
+.social-media a:hover .tooltip-social {
+  opacity: 1;
+  transform: translate(-50%, -130%);
+}
