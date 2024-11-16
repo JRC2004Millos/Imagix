@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +40,9 @@ public class ProponenteController {
     @Autowired
     private GerenciaService gerenciaService;
 
-    private static final String API_KEY = "sk-EeVMtKFXaDht-oSBD2OzML4juiMHJd2Cb3PQeMAfmXT3BlbkFJ0mbMSV11utUUI9j5JrP-UqZKDogH5jxdx2aOMOO3sA";
+    @Value("${openai.api.key}")
+    private String API_KEY;
+
     private static final String EMBEDDING_URL = "https://api.openai.com/v1/embeddings";
 
     // Mapa con las categorías y sus descripciones generales
