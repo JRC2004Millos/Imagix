@@ -1,39 +1,77 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/mostrarIdeas.css">
-    <title>Tabla de Ideas</title>
-</head>
-<body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CREAR IDEAS</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/crearIdea.css" />
+  </head>
+  <body>
+    <input type="checkbox" id="menuToggle" class="menu-toggle" />
     <div class="sidebar" id="sidebar">
-        <div class="logo">
-            <img src="/images/imagix.png" alt="Logo">
-        </div>
-        <nav>
-            <ul>
-                <li>
-                    <div class="card-client">
-                        <div class="user-picture">
-                            <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M224 256c70.7 0 128-57.31 128-128S153.3 0 96 128 153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3 448 381.6 370.4 304 274.7 304z"></path>
-                            </svg>
-                        </div>
-                        <p class="name-client" th:text="${promotor.name}">Nombre Usuario</p>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-        <button class="Btn" onclick="location.href='/login'">
-            <div class="sign">
-                <svg viewBox="0 0 512 512">
-                    <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+      <div class="logo"></div>
+      <nav>
+        <ul>
+          <li>
+            <div class="card-client">
+              <div class="user-picture">
+                <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"
+                  ></path>
                 </svg>
+              </div>
+              <p class="name-client" th:text="${proponente.nombre}"></p>
             </div>
-            <div class="text">Cerrar Sesión</div>
-        </button>
-    </div>
+          </li>
+        </ul>
+      </nav>
 
-</body>
+      <button class="Btn">
+        <div class="sign">
+          <svg viewBox="0 0 512 512">
+            <path
+              d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
+            ></path>
+          </svg>
+        </div>
+        <div class="text" onclick="location.href='/login'">Cerrar Sesión</div>
+      </button>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="content">
+        <div class="search-container">
+          <input type="text" class="search-input" placeholder="Search" />
+          <button class="search-button">
+            <img src="/images/search.png" alt="Search Icon" />
+          </button>
+        </div>
+        <div class="card">
+          <h2 class="card-title">¡ Ingresa el nombre de tu idea !</h2>
+          <!-- Formulario para enviar la idea al controlador -->
+          <form action="/proponente/subirIdea" method="post">
+            <div class="input-container">
+              <input
+                type="text"
+                name="nombreIdea"
+                placeholder="Idea..."
+                class="input-field"
+                required
+              />
+            </div>
+            <div class="lightbulb-icon">
+              <img src="/images/idea.png" alt="Idea Icon" />
+            </div>
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="confirm-button">Continuar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

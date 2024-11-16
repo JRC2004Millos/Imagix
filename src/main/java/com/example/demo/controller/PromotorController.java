@@ -4,7 +4,6 @@ import com.example.demo.model.Gerencia;
 import com.example.demo.model.Idea;
 import com.example.demo.model.Promotor;
 import com.example.demo.service.IdeaService;
-import com.example.demo.service.PromotorService;
 import jakarta.servlet.http.HttpSession;
 
 import java.util.List;
@@ -17,13 +16,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
 @RequestMapping("/promotor")
 public class PromotorController {
 
-    @Autowired
-    private PromotorService promotorService;
+    // @Autowired
+    // private PromotorService promotorService;
 
     @Autowired
     private IdeaService ideaService;
@@ -34,50 +32,48 @@ public class PromotorController {
         Promotor promotor = (Promotor) session.getAttribute("promotor");
 
         if (promotor == null) {
-            return "redirect:/login";  // Redirige si no hay sesión activa
+            return "redirect:/login"; // Redirige si no hay sesión activa
         }
 
-        model.addAttribute("promotor", promotor);  // Pasar el promotor al modelo
-        return "listaIdeas";  // Mostrar la vista listaIdeas.html
+        model.addAttribute("promotor", promotor); // Pasar el promotor al modelo
+        return "listaIdeas"; // Mostrar la vista listaIdeas.html
     }
 
+    @GetMapping("/ideas")
+    public String mostrarTablaIdeas(
+            @RequestParam(required = false) String search,
+            Model model,
+            HttpSession session) {
 
-   @GetMapping("/ideas")
-public String mostrarTablaIdeas(
-        @RequestParam(required = false) String search, 
-        Model model, 
-        HttpSession session) {
+        // Verificar si el usuario tiene sesión activa
+        Promotor promotor = (Promotor) session.getAttribute("promotor");
+        if (promotor == null) {
+            return "redirect:/login"; // Redirige al login si no hay sesión
+        }
 
-    // Verificar si el usuario tiene sesión activa
-    Promotor promotor = (Promotor) session.getAttribute("promotor");
-    if (promotor == null) {
-        return "redirect:/login"; // Redirige al login si no hay sesión
-    }
+        // Obtener la gerencia del promotor
+        Gerencia gerencia = promotor.getGerencia();
+        if (gerencia == null) {
+            model.addAttribute("error", "El promotor no tiene una gerencia asignada.");
+            return "error"; // Muestra una página de error o maneja el error
+        }
 
-    // Obtener la gerencia del promotor
-    Gerencia gerencia = promotor.getGerencia(); 
-    if (gerencia == null) {
-        model.addAttribute("error", "El promotor no tiene una gerencia asignada.");
-        return "error"; // Muestra una página de error o maneja el error
-    }
+        // Buscar ideas por gerencia, estado "Propuesta" y por nombre si se proporciona
+        // búsqueda
+        List<Idea> ideas;
 
-    // Buscar ideas por gerencia, estado "Propuesta" y por nombre si se proporciona búsqueda
-    List<Idea> ideas;
-   
         ideas = ideaService.findByGerenciaIdAndEstado(gerencia.getId(), "Propuesta");
-   
-       
-    // Añadir datos al modelo para la vista Thymeleaf
-    model.addAttribute("promotor", promotor);
-    model.addAttribute("ideas", ideas);
-    model.addAttribute("search", search);
 
-    return "mostrarIdeas"; // Renderiza la vista 'mostrarIdeas.html'
-}
+        // Añadir datos al modelo para la vista Thymeleaf
+        model.addAttribute("promotor", promotor);
+        model.addAttribute("ideas", ideas);
+        model.addAttribute("search", search);
 
+        return "mostrarIdeas"; // Renderiza la vista 'mostrarIdeas.html'
+    }
 
     @GetMapping("/idea/{id}")
-    public String informacionIdea(@PathVariable ("id") Long id, Model model, HttpSession session) {
+    public String informacionIdea(@PathVariable("id") Long id, Model model, HttpSession session) {
 
         Idea idea = ideaService.findById(id);
         model.addAttribute("idea", idea);
@@ -86,8 +82,5 @@ public String mostrarTablaIdeas(
         model.addAttribute("promotor", promotor);
         return "detalleIdea";
     }
-    
 
-
-    
 }
