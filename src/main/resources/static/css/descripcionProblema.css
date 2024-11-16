@@ -20,7 +20,7 @@ body {
 .sidebar {
     border: 1px solid #5bbec0;
     background-color: #5bbec0;
-    width: 220px;
+    width: 300px;
     padding: 20px 10px;
     display: flex;
     flex-direction: column;
@@ -35,13 +35,52 @@ body {
     z-index: 1000;
 }
 
-.menu-toggle:checked ~ .sidebar {
-    width: 120px;
+.imagixicon {
+    margin-top: 10px; 
+    margin-bottom: 0;   
+}
+  
+  .imagixicon img {
+    width: 100%;                
+    height: auto;           
+    border-radius: 10px;     
+    object-fit: contain;      
 }
 
-/* Ocultar texto al contraer */
+.card-client {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* Para centrar verticalmente la imagen y el texto */
+    text-align: center;
+    color: #fff; /* Color del texto */
+    gap: 5px;
+}
+
+.user-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-picture svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+
+.menu-toggle:checked ~ .sidebar {
+    width: 180px;
+}
+
 .menu-toggle:checked ~ .sidebar .name-client {
-    display: none;
+    display: block; /* Asegura que no se oculte el nombre */
+    opacity: 1;
+    font-size: 14px; /* Escala el tamaño en modo reducido */
 }
 
 /* Logo */
@@ -56,6 +95,12 @@ body {
     width: 90px;
     height: auto;
     transition: all 0.3s ease;
+}
+
+.menu-toggle:checked ~ .sidebar .name-client {
+    font-size: 16px;
+    text-align: center;
+    transform: translateX(0); /* Centrado en la vista reducida */
 }
 
 .menu-toggle:checked ~ .sidebar .logo img {
@@ -106,37 +151,14 @@ nav ul li a:hover {
     transform: scale(1.1);
 }
 
-/* Perfil */
-.card-client {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    background-color: transparent;
-    color: #fff;
-}
-
-.user-picture {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.user-picture svg {
-    width: 100%;
-    height: 100%;
-    fill: currentColor;
-}
 
 .name-client {
-    font-weight: 600;
     font-size: 18px;
-    transition: opacity 0.3s ease;
-}
+    font-weight: 600;
+    word-wrap: break-word; /* Para nombres largos */
+    max-width: 90%; /* Ajusta el ancho máximo del texto */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
 
 /* Logout Button */
 .logout {

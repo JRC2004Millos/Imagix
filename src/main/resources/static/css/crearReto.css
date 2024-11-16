@@ -20,7 +20,7 @@ body {
 .sidebar {
     border: 1px solid #5bbec0;
     background-color: #5bbec0;
-    width: 220px;
+    width: 300px;
     padding: 20px 10px;
     display: flex;
     flex-direction: column;
@@ -35,13 +35,27 @@ body {
     z-index: 1000;
 }
 
-.menu-toggle:checked ~ .sidebar {
-    width: 120px;
-}
-
 /* Ocultar texto al contraer */
 .menu-toggle:checked ~ .sidebar .name-client {
-    display: none;
+  display: block; /* Asegura que no se oculte el nombre */
+  opacity: 1;
+  font-size: 14px; /* Escala el tamaño en modo reducido */
+}
+
+.imagixicon {
+  margin-top: 10px; 
+  margin-bottom: 0;   
+}
+
+.imagixicon img {
+  width: 100%;                
+  height: auto;           
+  border-radius: 10px;     
+  object-fit: contain;      
+}
+
+.menu-toggle:checked ~ .sidebar {
+    width: 180px;
 }
 
 /* Logo */
@@ -59,7 +73,7 @@ body {
 }
 
 .menu-toggle:checked ~ .sidebar .logo img {
-    width: 60px;
+    width: 100px;
 }
 
 /* Navigation */
@@ -110,6 +124,7 @@ nav ul li a:hover {
 .card-client {
     display: flex;
     align-items: center;
+    flex-direction: column;
     gap: 10px;
     padding: 10px;
     background-color: transparent;
@@ -133,9 +148,12 @@ nav ul li a:hover {
 }
 
 .name-client {
-    font-weight: 600;
     font-size: 18px;
-    transition: opacity 0.3s ease;
+    font-weight: 600;
+    word-wrap: break-word; /* Para nombres largos */
+    max-width: 90%; /* Ajusta el ancho máximo del texto */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    text-align: center; /* Centra el texto horizontalmente */
 }
 
 /* Logout Button */
@@ -211,7 +229,7 @@ nav ul li a:hover {
 }
 
 .menu-toggle:checked ~ .main-content {
-    margin-left: 120px;
+    margin-left: 320px;
 }
 
 .menu-toggle:checked ~ .sidebar .logout .text {
@@ -342,18 +360,6 @@ nav ul li a:hover {
   border-radius: 20px; /* Redondea las esquinas del card */
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
   flex-grow: 1; /* Permite que el card crezca para llenar el espacio */
-}
-
-.imagixicon {
-    margin-top: 10px; 
-    margin-bottom: 0;   
-}
-
-.imagixicon img {
-    width: 100%;                
-    height: auto;           
-    border-radius: 10px;     
-    object-fit: contain;      
 }
 
 .sidebar{
