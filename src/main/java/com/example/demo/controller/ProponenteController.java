@@ -150,7 +150,7 @@ public class ProponenteController {
         }
 
         model.addAttribute("proponente", proponente);
-        return "crearIdeaoCrearReto";
+        return "crearIdea";
     }
 
     // POST para recibir los datos del formulario de subir idea (formulario1)

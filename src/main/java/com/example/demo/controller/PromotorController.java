@@ -12,14 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.sql.Date;
 import java.util.Arrays;
-import java.util.List;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -117,19 +118,32 @@ public class PromotorController {
      * }
      */
 
-    @PutMapping("idea/{id}")
-    @ResponseBody
-    public String actualizarCalificacion(@PathVariable("id") Long id, @RequestBody Idea nuevaIdea) {
-        Idea ideaExistente = ideaService.findById(id);
+    @PostMapping("/idea/{id}")
+    public String guardarCambiosIdea(
+            @PathVariable("id") Long id,
+            @RequestParam("estado") String estado,
+            @RequestParam("nuevoComentario") String nuevoComentario,
+            @RequestParam(value = "nuevaCalificacion", required = false) Double nuevaCalificacion) {
 
-        if (ideaExistente == null) {
-            return "Idea no encontrada";
+        // Buscar la idea por su ID
+        Idea idea = ideaService.findById(id);
+        if (idea == null) {
+            throw new IllegalArgumentException("Idea no encontrada con ID: " + id);
         }
 
-        ideaExistente.setCalificacion((nuevaIdea.getCalificacion()));
-        ideaService.save(ideaExistente);
+        // Actualizar los campos de la idea
+        idea.setEstado(estado);
+        idea.setComentario(nuevoComentario);
+        idea.setFechaAprobacion(new Date(System.currentTimeMillis()));
+        if (nuevaCalificacion != null) {
+            idea.setCalificacion(nuevaCalificacion.floatValue());
+        }
 
-        return "Calificación actualizada";
+        // Guardar los cambios
+        ideaService.save(idea);
+
+        // Redirigir nuevamente a la página de detalles
+        return "redirect:/promotor/idea/" + id;
     }
 
     @PutMapping("idea/{id}/estado")
