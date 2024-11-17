@@ -19,20 +19,23 @@
       <nav>
         <ul>
           <li>
+            <div class="imagixicon">
+              <img src="/images/imagix.png" alt="Idea Icon" />
+            </div>
             <div class="card-client">
               <div class="user-picture">
                   <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
                       <path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path>
                   </svg>
               </div>
-              <p class="name-client"> Nombre Usuario
+              <p class="name-client" th:text="${proponente.nombre}"> Nombre Usuario
                   
                   </span>
               </p>
           </li>
         </ul>
       </nav>
-      <button class="Btn">
+      <button class="Btn logout">
         <div class="sign">
           <svg viewBox="0 0 512 512">
             <path
@@ -42,22 +45,20 @@
         </div>
       
         <div class="text">Cerrar Sesión</div>
+        <img src="/images/boton-de-encendido-apagado.png" alt="Apgado Icon" />
       </button>
           </div>
 
     <div class="main-content">
-      
+
+      <label for="menuToggle" class="toggle-btn">
+        <img src="/images/menu.png" alt="Menu Icon" class="menu-icon" />
+      </label>
       <div class="content">
-        <div class="search-container">
-          <input type="text" class="search-input" placeholder="Search" />
-          <button class="search-button">
-            <img src="/images/search.png" alt="Search Icon" />
-          </button>
-        </div>
 
         <div class="card">
           <h2 class="card-title">
-            Ingrese una breve descripción de la solución
+            Ingrese la descripcion de la solucion
           </h2>
 
           <!-- Formulario para enviar la descripción de la solución -->
@@ -69,6 +70,10 @@
                 placeholder="Descripción..."
                 required
               ></textarea>
+            </div>
+
+            <div class="lightbulb-icon">
+              <img src="/images/solucionP.png" alt="Idea Icon" />
             </div>
 
             <button type="submit" class="confirm-button">Continuar</button>
