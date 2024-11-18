@@ -17,35 +17,64 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background-color: #4a90e2; /* Azul para el header */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  position: relative;
   width: 100%;
+  padding: 10px 20px;
+  background-color: #fff;
+  border-bottom: 6px solid #008ac9;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.header-content {
+.header .logo {
+  display: inline-block;
+}
+
+.header .login-button {
+  margin-left: auto;
+}
+
+header .logo img {
+  height: 50px;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+}
+
+header nav ul li {
+  margin: 0 25px;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+  color: #008ac9;
+}
+
+.btnprofile {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 10px; /* Espaciado con el logo */
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
 }
 
-.header-content img {
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 25px;
-  font-size: 16px;
-  width: 150px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: border-color 0.3s ease;
-  margin-right: auto; 
-  margin-left: 20px;
+.img-profile {
+  width: 50px; /* Ajusta el tamaño de la imagen */
+  height: 50px;
+  transition: transform 0.2s ease;
 }
 
-.search-bar:focus {
-  border-color: #7fbcff;
-  outline: none;
+/* Efecto hover */
+.btnprofile:hover .img-profile {
+  transform: scale(1.3); /* Se hace más grande al pasar el cursor */
 }
 
 .logout {
@@ -73,23 +102,12 @@ header {
   justify-content: center; 
 }
 
-.card {
-  background-color: #f7f9fc;
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto; /* Centrar el card */
-  width: 70%; /* Ancho del card */
-}
 
 .title {
+  padding: 30px;
   font-size: 30px; /* Tamaño de la pregunta */
   color: #333;
-  margin-bottom: 20px; /* Espacio entre la pregunta y los botones */
+  margin-bottom: 10px; /* Espacio entre la pregunta y los botones */
   font-weight: 600;
 }
 
@@ -130,25 +148,81 @@ header {
   transform: scale(1.05); /* Efecto de escalado al pasar el ratón */
 }
 
+.btn-small {
+    width: 200px;
+    height: 200px;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Botón pequeño verde (izquierda) */
+.btn-left {
+    background-color: #8fb52b; /* Verde */
+    color: white;
+}
+
+.btn-left:hover {
+    background-color: #7da724; /* Más oscuro al pasar el ratón */
+    transform: scale(1.1);
+}
+
+/* Botón pequeño azul (derecha) */
+.btn-right {
+    background-color: #4a90e2; /* Azul */
+    color: white;
+}
+
+.btn-right:hover {
+    background-color: #3a7cc2; /* Más oscuro al pasar el ratón */
+    transform: scale(1.1);
+}
+
+.icon {
+  width: 150px; /* Ancho reducido */
+  height: 150px; /* Alto reducido */
+  margin-bottom: 10px;
+}
+
+/* Iconos en botones pequeños */
+.icon-small {
+  width: 80px; /* Ancho reducido */
+  height: 80px; /* Alto reducido */
+  margin-bottom: 5px;
+}
+
 .main-content .icon {
   width: 200px; /* Tamaño de la imagen */
   height: 200px; /* Tamaño de la imagen */
 }
 
 footer {
-  background-color: #4a90e2; /* Azul para el footer */
-  padding: 20px;
+  background-color: white;
+  padding: 10px;
   text-align: center;
-  box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
-  position: fixed;
+  color: black;
+  position: relative;
   width: 100%;
   bottom: 0;
+  border-top: 6px solid #008ac9;
 }
 
-footer p {
-  margin: 0;
+footer .contact-info {
   font-size: 14px;
-  color: #fff; /* Color de texto blanco en el footer */
+  margin-bottom: 10px;
+}
+
+footer .logo img {
+  height: 50px;
+  margin-top: 10px;
 }
 
 /* Desde Uiverse.io por Lealdos */ 
