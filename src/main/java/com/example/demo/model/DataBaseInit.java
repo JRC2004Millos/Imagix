@@ -35,12 +35,19 @@ public class DataBaseInit implements ApplicationRunner {
     private PromotorRepository promotorRepository;
     @Autowired
     private ProponenteRepository proponenteRepository;
+    @Autowired
+    private AdminRepository adminRepository;
+    @Autowired
+    private GerenteRepository gerenteRepository;
 
     // Contador para generar claves únicas
     private final AtomicInteger contadorClave = new AtomicInteger(123); // Inicia en 123
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        //Agregar admin
+        adminRepository.save(new Admin("admin","admin"));
+
         //Promotores
         //Ruta al archivo Excel
         InputStream inputStream = getClass().getResourceAsStream("/static/excel/Base promotores 2024.xlsx");
@@ -234,6 +241,9 @@ public class DataBaseInit implements ApplicationRunner {
         // Cerrar recursos
         workbook.close();
         inputStream.close();
+
+        //Agregar gerente
+        gerenteRepository.save(new Gerente("Pedro", "pedro@cremhelado.com.co",cargoRepository.findById(326L).get(), regionalRepository.findById(2L).get(), gerenciaRepository.findById(2L).get()));
     }   
 
     // Método para generar claves únicas del estilo "clave123", "clave124", etc.
