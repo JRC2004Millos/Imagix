@@ -63,8 +63,8 @@
                     <select name="estado" id="estado-pinner" class="spinner">
                       <option
                         th:each="estado : ${estados}"
-                        th:value="${estado}"
-                        th:text="${estado}"
+                        th:value="${idea.estado}"
+                        th:text="${idea.estado}"
                         th:select="${estado == idea.estado}"
                       ></option>
                     </select>

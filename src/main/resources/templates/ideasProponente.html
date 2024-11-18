@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ideas del Proponente</title>
+    <link rel="stylesheet" href="/css/ideasProponente.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="/images/imagix.png" alt="Logo Imagix" />
+      </div>
+    </header>
+
+    <main>
+      <div class="idea-icon">
+        <img src="/images/Idea.png" alt="Idea" />
+      </div>
+      <div class="ideas-container">
+        <h2>Ideas de <span th:text="${proponente.nombre}">Proponente</span></h2>
+
+        <!-- Tabla de ideas -->
+        <div class="table-wrapper">
+          <table class="ideas-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Calificación</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="idea : ${ideas}">
+                <td th:text="${idea.id}">1</td>
+                <td th:text="${idea.nombreIdea}">Idea Innovadora</td>
+                <td th:text="${#strings.abbreviate(idea.descripcion, 50)}">
+                  Descripción corta...
+                </td>
+                <td th:text="${idea.estado}">Propuesta</td>
+                <td th:text="${idea.calificacion}">8.5</td>
+                <td class="actions">
+                  <button
+                    class="action-button"
+                    th:onclick="|window.location.href='/ideas/ver/' + ${idea.id}|"
+                  >
+                    Ver
+                  </button>
+                  <button
+                    class="action-button"
+                    th:onclick="|window.location.href='/ideas/editar/' + ${idea.id}|"
+                  >
+                    Editar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Mensaje si no hay ideas -->
+        <p th:if="${ideas.size() == 0}" class="no-ideas-message">
+          No hay ideas asociadas a este proponente.
+        </p>
+      </div>
+
+      <!-- Botón de regresar -->
+      <div class="decorations">
+        <button
+          onclick="window.location.href='/proponente'"
+          class="back-button"
+        >
+          Volver
+        </button>
+      </div>
+    </main>
+
+    <footer>
+      <div class="contact-info">
+        <div class="logo">
+          <img src="/images/imagix.png" alt="Logo Imagix" />
+        </div>
+        <p>Tel. 3002223344</p>
+        <p>Correo: imagix@gruponutresa.co</p>
+      </div>
+    </footer>
+  </body>
+</html>
