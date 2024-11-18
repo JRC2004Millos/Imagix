@@ -12,11 +12,14 @@
   </head>
   <body>
     <input type="checkbox" id="menuToggle" class="menu-toggle" />
+
     <div class="sidebar" id="sidebar">
-      <div class="logo"></div>
       <nav>
         <ul>
           <li>
+            <div class="imagixicon">
+              <img src="/images/imagix.png" alt="Idea Icon" />
+            </div>
             <div class="card-client">
               <div class="user-picture">
                 <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
@@ -25,13 +28,13 @@
                   ></path>
                 </svg>
               </div>
-              <p class="name-client" th:text="${proponente.nombre}"></p>
+              <p class="name-client" th:text="${proponente.nombre}">Nombre Usuario</p>
             </div>
           </li>
         </ul>
       </nav>
 
-      <button class="Btn">
+      <button class="Btn logout">
         <div class="sign">
           <svg viewBox="0 0 512 512">
             <path
@@ -39,21 +42,21 @@
             ></path>
           </svg>
         </div>
-        <div class="text" onclick="location.href='/login'">Cerrar Sesión</div>
+        <div class="text">Cerrar Sesión</div>
+        <img src="/images/boton-de-encendido-apagado.png" alt="Apgado Icon" />
       </button>
     </div>
+
     <!-- Main Content -->
     <div class="main-content">
+
+      <label for="menuToggle" class="toggle-btn">
+        <img src="/images/menu.png" alt="Menu Icon" class="menu-icon" />
+      </label>
+
       <div class="content">
-        <div class="search-container">
-          <input type="text" class="search-input" placeholder="Search" />
-          <button class="search-button">
-            <img src="/images/search.png" alt="Search Icon" />
-          </button>
-        </div>
         <div class="card">
           <h2 class="card-title">¡ Ingresa el nombre de tu idea !</h2>
-          <!-- Formulario para enviar la idea al controlador -->
           <form action="/proponente/subirIdea" method="post">
             <div class="input-container">
               <input
