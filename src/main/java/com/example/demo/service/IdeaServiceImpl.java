@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.Gerencia;
-import com.example.demo.model.Gerente;
 import com.example.demo.model.Idea;
 import com.example.demo.repository.IdeaRepository;
 
@@ -33,7 +32,6 @@ public class IdeaServiceImpl implements IdeaService {
         return ideaRepository.findAll();
     }
 
-
     @Override
     public List<Idea> findByNombreIdeaContainingIgnoreCase(String search) {
         return ideaRepository.findByNombreIdeaContainingIgnoreCase(search);
@@ -46,10 +44,7 @@ public class IdeaServiceImpl implements IdeaService {
 
     @Override
     public List<Idea> findByGerenciaIdAndEstado(Long gerenciaId, String estado) {
-        return  ideaRepository.findByGerenciaIdAndEstado(gerenciaId, estado);
+        return ideaRepository.findByGerenciaIdAndEstado(gerenciaId, estado);
     }
 
-     
-   
-    
 }
