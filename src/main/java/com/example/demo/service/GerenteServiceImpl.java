@@ -8,8 +8,6 @@ import com.example.demo.model.Idea;
 import com.example.demo.repository.GerenteRepository;
 import com.example.demo.repository.IdeaRepository;
 
-import java.util.List;
-
 @Service
 public class GerenteServiceImpl implements GerenteService {
 
@@ -29,8 +27,6 @@ public class GerenteServiceImpl implements GerenteService {
         return gerenteRepository.findByEmail(email);
     }
 
-    
-
     @Override
     public void aprobarIdea(Long ideaId, Long gerenteId) {
         Idea idea = ideaRepository.findById(ideaId).orElse(null);
@@ -39,9 +35,7 @@ public class GerenteServiceImpl implements GerenteService {
             ideaRepository.save(idea);
         }
     }
-    
 
-  
     public void rechazarIdea(Long ideaId, Long gerenteId) {
         Idea idea = ideaRepository.findById(ideaId).orElse(null);
         if (idea != null && idea.getEstado().equals("En revisión por gerente")) {
@@ -49,5 +43,5 @@ public class GerenteServiceImpl implements GerenteService {
             ideaRepository.save(idea);
         }
     }
-   
+
 }
