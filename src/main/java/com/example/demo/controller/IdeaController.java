@@ -46,6 +46,7 @@ public class IdeaController {
         // Actualizar los campos que vienen del formulario
         ideaExistente.setNombreIdea(idea.getNombreIdea());
         ideaExistente.setDescripcion(idea.getDescripcion());
+        ideaExistente.setSituacionDetectada(idea.getSituacionDetectada());
         ideaExistente.setEstado(idea.getEstado());
 
         // Otros campos no incluidos en el formulario permanecen inalterados

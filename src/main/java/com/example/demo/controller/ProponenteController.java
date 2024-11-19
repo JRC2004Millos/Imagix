@@ -245,6 +245,7 @@ public class ProponenteController {
     public String procesarIdea(@RequestParam("nombreIdea") String nombreIdea, HttpSession session) {
         // Guardar la idea en la sesión temporalmente
         session.setAttribute("nombreIdea", nombreIdea);
+        session.setAttribute("estadoImplementada", false);
 
         // Redirigir a la siguiente pantalla (por ejemplo, subir proponentes)
         return "redirect:/proponente/subirProponentes";
@@ -305,6 +306,7 @@ public class ProponenteController {
         // Recuperar los datos de la idea desde la sesión
         String nombreIdea = (String) session.getAttribute("nombreIdea");
         String descripcionProblema = (String) session.getAttribute("descripcionProblema");
+        boolean estadoImplementada = (boolean) session.getAttribute("estadoImplementada");
         @SuppressWarnings("unchecked")
         List<Proponente> proponentes = (List<Proponente>) session.getAttribute("proponentes");
 
@@ -323,7 +325,7 @@ public class ProponenteController {
         idea.setProponentes(proponentesGestionados); // Usar la lista gestionada
         idea.setFechaCreacion(new Date(System.currentTimeMillis()));
         idea.setEstado("Propuesta");
-        idea.setEstadoImplementada(false);
+        idea.setEstadoImplementada(estadoImplementada);
 
         // Recuperar el proponente desde la sesión y verificar que no sea null
         Proponente proponente = (Proponente) session.getAttribute("proponente");
@@ -380,8 +382,29 @@ public class ProponenteController {
     // POST para procesar el reto del formulario
     @PostMapping("/subirReto")
     public String procesarReto(@RequestParam("nombreReto") String nombreReto, HttpSession session) {
-        session.setAttribute("nombreReto", nombreReto);
-        return "redirect:/proponente/solucion"; // Ir a la siguiente pantalla
+        session.setAttribute("nombreIdea", nombreReto);
+        session.setAttribute("estadoImplementada", true);
+        return "redirect:/proponente/fechaImplementacion"; // Ir a la siguiente pantalla
+    }
+
+    @GetMapping("/fechaImplementacion")
+    public String fechaImplementacion(HttpSession session, Model model) {
+
+        Proponente proponente = (Proponente) session.getAttribute("proponente");
+
+        if (proponente == null) {
+            return "redirect:/login";
+        }
+
+        model.addAttribute("proponente", proponente);
+        return "fechaImplementacion";
+    }
+
+    @PostMapping("/fechaImplementacion")
+    public String procesarFechaImplementacion(@RequestParam("fechaImplementacion") Date fechaImplementacion,
+            HttpSession session) {
+        session.setAttribute("fechaImplementacion", fechaImplementacion);
+        return "redirect:/proponente/subirProponentes"; // Ir a la siguiente pantalla
     }
 
     // GET para mostrar la vista de ingresar proponentes

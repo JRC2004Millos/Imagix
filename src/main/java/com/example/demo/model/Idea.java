@@ -9,7 +9,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
@@ -24,17 +23,20 @@ public class Idea {
     String responsable;
     Date fechaCreacion;
     Date fechaAprobacion;
+    Date fechaImplementacion;
     String nombreIdea;
-    @Lob
-    @Column
-    String situacionDetectada;
-    @Lob
-    @Column
-    String descripcion;
     Boolean estadoImplementada;
     float calificacion;
     String estadoCalificacion;
+
+    @Column(length = 10000)
     String comentario;
+
+    @Column(length = 10000)
+    String situacionDetectada;
+
+    @Column(length = 10000)
+    String descripcion;
 
     @ManyToOne
     @JoinColumn(name = "gerencia_id")
@@ -175,6 +177,14 @@ public class Idea {
 
     public void setResponsable(String responsable) {
         this.responsable = responsable;
+    }
+
+    public Date getFechaImplementacion() {
+        return fechaImplementacion;
+    }
+
+    public void setFechaImplementacion(Date fechaImplementacion) {
+        this.fechaImplementacion = fechaImplementacion;
     }
 
 }

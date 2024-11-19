@@ -10,9 +10,9 @@
     />
     <link rel="stylesheet" href="/css/crearReto.css" />
   </head>
-  <body> 
+  <body>
     <input type="checkbox" id="menuToggle" class="menu-toggle" />
-    
+
     <div class="sidebar" id="sidebar">
       <nav>
         <ul>
@@ -28,7 +28,9 @@
                   ></path>
                 </svg>
               </div>
-              <p class="name-client" th:text="${proponente.nombre}">Nombre Usuario</p>
+              <p class="name-client" th:text="${proponente.nombre}">
+                Nombre Usuario
+              </p>
             </div>
           </li>
         </ul>
@@ -54,23 +56,32 @@
       </label>
 
       <div class="content">
-        
-          <img src="/images/desafios.png" alt="Desafios Icon" class="desafios-image" />
+        <img
+          src="/images/desafios.png"
+          alt="Desafios Icon"
+          class="desafios-image"
+        />
 
         <div class="card">
           <h2 class="card-title">¡ Ingresa el nombre de tu Reto !</h2>
-          <div class="input-container">
-            <input type="text" placeholder="Reto..." class="input-field" />
-          </div>
-
-          <div class="lightbulb-icon">
-            <img src="/images/idea.png" alt="Idea Icon" />
-          </div>
-
-          <a href="subirProponentes" class="confirm-button">Continuar</a>
+          <form action="/proponente/subirReto" method="post">
+            <div class="input-container">
+              <input
+                type="text"
+                name="nombreReto"
+                placeholder="Reto..."
+                class="input-field"
+                required
+              />
+            </div>
+            <div class="lightbulb-icon">
+              <img src="/images/idea.png" alt="Idea Icon" />
+            </div>
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="confirm-button">Continuar</button>
+          </form>
         </div>
       </div>
     </div>
-
   </body>
 </html>

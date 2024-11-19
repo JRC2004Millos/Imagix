@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CREAR IDEAS</title>
+    <title>Fecha de Implementación</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/crearIdea.css" />
+    <link rel="stylesheet" href="/css/fechaImplementacion.css" />
   </head>
   <body>
     <input type="checkbox" id="menuToggle" class="menu-toggle" hidden />
@@ -45,7 +45,6 @@
           </svg>
         </div>
         <div class="text">Cerrar Sesión</div>
-        <img src="/images/boton-de-encendido-apagado.png" alt="Apgado Icon" />
       </button>
     </div>
 
@@ -57,22 +56,21 @@
 
       <div class="content">
         <div class="card">
-          <h2 class="card-title">¡ Ingresa el nombre de tu idea !</h2>
-          <form action="/proponente/subirIdea" method="post">
+          <h2 class="card-title">Selecciona la Fecha de Implementación</h2>
+          <form action="/proponente/fechaImplementacion" method="post">
             <div class="input-container">
+              <label for="fechaImplementacion" class="input-label">
+                Fecha de Implementación
+              </label>
               <input
-                type="text"
-                name="nombreIdea"
-                placeholder="Idea..."
+                type="date"
+                id="fechaImplementacion"
+                name="fechaImplementacion"
                 class="input-field"
                 required
               />
             </div>
-            <div class="lightbulb-icon">
-              <img src="/images/idea.png" alt="Idea Icon" />
-            </div>
-            <!-- Botón para enviar el formulario -->
-            <button type="submit" class="confirm-button">Continuar</button>
+            <button type="submit" class="confirm-button">Guardar Fecha</button>
           </form>
         </div>
       </div>

@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Editar Idea</title>
     <link rel="stylesheet" href="/css/idea.css" />
+    <script>
+      document.addEventListener("input", function (event) {
+        if (event.target.classList.contains("fixed-textarea")) {
+          event.target.style.height = "auto"; // Reinicia la altura
+          event.target.style.height = event.target.scrollHeight + "px"; // Ajusta la altura al contenido
+        }
+      });
+    </script>
   </head>
   <body>
     <header>
@@ -20,6 +28,7 @@
       <div class="details-container">
         <h2>Editar Idea</h2>
         <form th:object="${idea}" th:action="@{/ideas/guardar}" method="post">
+          <input type="hidden" name="id" th:value="${idea.id}" />
           <table class="details-table">
             <tr>
               <th>Nombre</th>
@@ -66,6 +75,10 @@
             <tr>
               <th>Estado</th>
               <td th:text="${idea.estado}">Propuesta</td>
+            </tr>
+            <tr>
+              <th>Comentarios</th>
+              <td th:text="${idea.comentario}">Comentarios</td>
             </tr>
             <tr>
               <th>Calificación</th>

@@ -197,6 +197,7 @@ public class DataBaseInit implements ApplicationRunner {
                 String situacionDetectada = getCellValue(row, 10);
                 String descripcion = getCellValue(row, 11);
                 String estadoImplementada = getCellValue(row, 15);
+                String fechaImplementada = getCellValue(row, 19);
                 String calificacion = getCellValue(row, 25);
                 String estadoCalificacion = getCellValue(row, 26);
                 String comentario = getCellValue(row, 27);
@@ -221,11 +222,12 @@ public class DataBaseInit implements ApplicationRunner {
                 // Validación y conversión segura de fechas
                 idea.setFechaCreacion(convertirStringAFecha(fechaCreacion));
                 idea.setFechaAprobacion(convertirStringAFecha(fechaAprobacion));
+                idea.setFechaImplementacion(convertirStringAFecha(fechaImplementada));
 
                 idea.setGerencia(findOrCreateGerencia(gerenciaNom));
-                idea.setNombreIdea(truncarDescripcion(nombreIdea));
-                idea.setSituacionDetectada(truncarDescripcion(situacionDetectada));
-                idea.setDescripcion(truncarDescripcion(descripcion));
+                idea.setNombreIdea(truncarDescripcion(nombreIdea, 255));
+                idea.setSituacionDetectada(truncarDescripcion(situacionDetectada, 10000));
+                idea.setDescripcion(truncarDescripcion(descripcion, 10000));
 
                 // Convertir estado implementada a boolean
                 idea.setEstadoImplementada(estadoImplementada.equalsIgnoreCase("Si"));
@@ -233,8 +235,8 @@ public class DataBaseInit implements ApplicationRunner {
                 // Conversión segura de calificación a float
                 idea.setCalificacion(convertirStringAFloat(calificacion));
 
-                idea.setEstadoCalificacion(truncarDescripcion(estadoCalificacion));
-                idea.setComentario(truncarDescripcion(comentario));
+                idea.setEstadoCalificacion(truncarDescripcion(estadoCalificacion, 255));
+                idea.setComentario(truncarDescripcion(comentario, 10000));
 
                 // Guardar la idea en el repositorio
                 ideaRepository.save(idea);
@@ -249,12 +251,15 @@ public class DataBaseInit implements ApplicationRunner {
         inputStream.close();
 
         // Agregar gerentes
-        gerenteRepository.save(new Gerente("Fernanda", "fernanda@cremhelado.com.co", "123", cargoRepository.findById(3L).get(),
-                regionalRepository.findById(2L).get(), gerenciaRepository.findById(1L).get()));
-        gerenteRepository.save(new Gerente("Pedro", "pedro@cremhelado.com.co", "123", cargoRepository.findById(3L).get(),
-                regionalRepository.findById(2L).get(), gerenciaRepository.findById(2L).get()));
-        gerenteRepository.save(new Gerente("Monica", "monica@cremhelado.com.co", "123", cargoRepository.findById(3L).get(),
-                regionalRepository.findById(2L).get(), gerenciaRepository.findById(3L).get()));
+        gerenteRepository
+                .save(new Gerente("Fernanda", "fernanda@cremhelado.com.co", "123", cargoRepository.findById(3L).get(),
+                        regionalRepository.findById(2L).get(), gerenciaRepository.findById(1L).get()));
+        gerenteRepository
+                .save(new Gerente("Pedro", "pedro@cremhelado.com.co", "123", cargoRepository.findById(3L).get(),
+                        regionalRepository.findById(2L).get(), gerenciaRepository.findById(2L).get()));
+        gerenteRepository
+                .save(new Gerente("Monica", "monica@cremhelado.com.co", "123", cargoRepository.findById(3L).get(),
+                        regionalRepository.findById(2L).get(), gerenciaRepository.findById(3L).get()));
     }
 
     // Método para generar claves únicas del estilo "clave123", "clave124", etc.
@@ -364,9 +369,9 @@ public class DataBaseInit implements ApplicationRunner {
 
     // Método para evitar que la descripción sea más larga de 255, si se coloca no
     // se va a tener en cuenta
-    private String truncarDescripcion(String descripcion) {
-        if (descripcion.length() > 255) {
-            return descripcion.substring(0, 255); // Truncar a 255 caracteres
+    private String truncarDescripcion(String descripcion, int caracteres) {
+        if (descripcion.length() > caracteres) {
+            return descripcion.substring(0, caracteres); // Truncar a 255 caracteres
         }
         return descripcion;
     }
