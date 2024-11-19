@@ -26,8 +26,8 @@
         <img src="/images/Idea.png" alt="Idea Icon" />
       </div>
       <div class="details-container">
-        <h2>Editar Idea</h2>
-        <form th:object="${idea}" th:action="@{/ideas/guardar}" method="post">
+        <h2>Editar Reto</h2>
+        <form th:object="${idea}" th:action="@{/retos/guardar}" method="post">
           <input type="hidden" name="id" th:value="${idea.id}" />
           <table class="details-table">
             <tr>
@@ -111,7 +111,7 @@
             <button
               type="button"
               class="back-button"
-              onclick="window.location.href='/proponente/ideas'"
+              onclick="window.location.href='/proponente/retos'"
             >
               Volver
             </button>

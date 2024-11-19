@@ -307,6 +307,7 @@ public class ProponenteController {
         String nombreIdea = (String) session.getAttribute("nombreIdea");
         String descripcionProblema = (String) session.getAttribute("descripcionProblema");
         boolean estadoImplementada = (boolean) session.getAttribute("estadoImplementada");
+        Date fechaImplementacion = (Date) session.getAttribute("fechaImplementacion");
         @SuppressWarnings("unchecked")
         List<Proponente> proponentes = (List<Proponente>) session.getAttribute("proponentes");
 
@@ -324,9 +325,12 @@ public class ProponenteController {
         idea.setSituacionDetectada(descripcionProblema);
         idea.setProponentes(proponentesGestionados); // Usar la lista gestionada
         idea.setFechaCreacion(new Date(System.currentTimeMillis()));
-        idea.setEstado("Propuesta");
         idea.setEstadoImplementada(estadoImplementada);
-
+        if (estadoImplementada) {
+            idea.setFechaImplementacion(fechaImplementacion);
+            idea.setEstado("En Desarrollo");
+        }
+        idea.setEstado("Propuesta");
         // Recuperar el proponente desde la sesión y verificar que no sea null
         Proponente proponente = (Proponente) session.getAttribute("proponente");
         idea.setResponsable(proponente != null ? proponente.getNombre() : "Desconocido");
@@ -474,7 +478,8 @@ public class ProponenteController {
         }
 
         model.addAttribute("proponente", proponente);
-        model.addAttribute("ideas", ideaService.findIdeasByProponenteId(proponente.getId()));
+        model.addAttribute("ideas",
+                ideaService.findIdeasByProponenteIdAndEstadoImplementadaIsFalse(proponente.getId()));
 
         return "ideasProponente";
     }
@@ -489,6 +494,19 @@ public class ProponenteController {
 
         model.addAttribute("proponente", proponente);
         return "perfilProponente";
+    }
+
+    @GetMapping("/retos")
+    public String verRetoString(Model model, HttpSession session) {
+        Proponente proponente = (Proponente) session.getAttribute("proponente");
+
+        if (proponente == null) {
+            return "redirect:/login";
+        }
+
+        model.addAttribute("proponente", proponente);
+        model.addAttribute("ideas", ideaService.findIdeasByProponenteIdAndEstadoImplementadaIsTrue(proponente.getId()));
+        return "retosProponente";
     }
 
 }

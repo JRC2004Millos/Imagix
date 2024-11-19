@@ -3,21 +3,20 @@ package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.model.Idea;
 import com.example.demo.service.IdeaService;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import jakarta.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@RequestMapping("/ideas")
-public class IdeaController {
+@RequestMapping("/retos")
+public class RetoController {
 
     @Autowired
     private IdeaService ideaService;
@@ -25,14 +24,14 @@ public class IdeaController {
     @GetMapping("/ver/{id}")
     public String verDetalleIdea(@PathVariable("id") Long id, Model model, HttpSession session) {
         model.addAttribute("idea", ideaService.findById(id));
-        return "idea";
+        return "reto";
     }
 
     @GetMapping("/editar/{id}")
     public String editarIdea(@PathVariable("id") Long id, Model model, HttpSession session) {
 
         model.addAttribute("idea", ideaService.findById(id));
-        return "editarIdea";
+        return "editarReto";
     }
 
     @PostMapping("/guardar")
@@ -40,7 +39,7 @@ public class IdeaController {
         Idea ideaExistente = ideaService.findById(idea.getId());
 
         if (ideaExistente == null) {
-            return "redirect:/ideas/ver/" + idea.getId();
+            return "redirect:/retos/ver/" + idea.getId();
         }
 
         // Actualizar los campos que vienen del formulario
@@ -52,7 +51,6 @@ public class IdeaController {
 
         // Guardar la entidad actualizada
         ideaService.save(ideaExistente);
-        return "redirect:/ideas/ver/" + idea.getId();
+        return "redirect:/retos/ver/" + idea.getId();
     }
-
 }

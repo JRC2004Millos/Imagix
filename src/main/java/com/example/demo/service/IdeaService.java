@@ -23,6 +23,10 @@ public interface IdeaService {
 
     public List<Idea> findIdeasByProponenteId(Long proponenteId);
 
+    public List<Idea> findIdeasByProponenteIdAndEstadoImplementadaIsFalse(Long proponenteId);
+
+    public List<Idea> findIdeasByProponenteIdAndEstadoImplementadaIsTrue(Long proponenteId);
+
     public List<Idea> findByFechaAprobacionIsNullAndGerenciaId(Long gerenciaId);
 
     List<Idea> findByGerenciaAndEstado(Gerencia gerencia, String estado);
@@ -30,6 +34,7 @@ public interface IdeaService {
     List<Idea> findByGerenciaIdAndEstado(Long gerenciaId, String estado);
 
     List<Idea> findByGerenciaId(Long gerenciaId);
+
     // Método para filtrar las ideas entre dos fechas
     public List<Idea> findIdeasBetweenDates(Date startDate, Date endDate);
 }
