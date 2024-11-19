@@ -18,8 +18,8 @@ body {
 
 /* Sidebar */
 .sidebar {
-    border: 1px solid #5bbec0;
-    background-color: #5bbec0;
+    border: 1px solid #53bac3;
+    background-color: #25abe0;
     width: 300px;
     padding: 20px 10px;
     display: flex;
@@ -32,20 +32,46 @@ body {
     bottom: 0;
     left: 0;
     transition: width 0.3s ease;
-    z-index: 1000;
-}
+    z-index: 1000; 
+  }
 
-.imagixicon {
-    margin-top: 10px; 
-    margin-bottom: 0;   
-}
+  .imagixicon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff; /* Fondo blanco del recuadro */
+    padding: 5px; /* Espaciado interno reducido */
+    border: 3px solid #f0f0f0; /* Borde sutil */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    width: 260px; /* Ancho normal */
+    height: 110px; /* Alto normal */
+    margin: 0 auto 20px auto; /* Centrado con margen inferior */
+    transition: all 0.3s ease; /* Transición suave para el tamaño */
+  }
   
+  /* Imagen dentro del contenedor en estado normal */
   .imagixicon img {
-    width: 100%;                
-    height: auto;           
-    border-radius: 10px;     
-    object-fit: contain;      
-}
+    width: 250px; /* Imagen más grande dentro del contenedor */
+    height: auto;
+    object-fit: contain; /* Evita deformación */
+    transition: all 0.3s ease; /* Transición suave para el tamaño */
+  }
+  
+  .imagixicon:hover img {
+    transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
+  }
+
+  .menu-toggle:checked ~ .sidebar .imagixicon {
+    width: 120px; 
+    height: 50px; 
+    padding: 3px; 
+  }
+  
+  .menu-toggle:checked ~ .sidebar .imagixicon img {
+    width: 100px; 
+    height: auto;
+  }
 
 .card-client {
     display: flex;
@@ -282,7 +308,7 @@ nav ul li a:hover {
 
 /* Input Container*/ 
 .input-container {
-    background-color: #5bbec0; /* Color de fondo */
+    background-color: #25abe0; /* Color de fondo */
     padding: 40px;             /* Aumentar el padding alrededor del textarea */
     border-radius: 30px;       /* Bordes redondeados */
     display: flex;

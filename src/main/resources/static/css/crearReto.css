@@ -9,8 +9,9 @@
 
 body {
     display: flex;
+    flex-direction: column;
     height: 100vh;
-    background-color: #eef2f5;
+    background-color: #f7f9fc;
     align-items: center;
     justify-content: center;
     overflow: hidden; /* Evita scroll innecesario */
@@ -18,8 +19,8 @@ body {
 
 /* Sidebar */
 .sidebar {
-    border: 1px solid #5bbec0;
-    background-color: #5bbec0;
+    border: 1px solid #53bac3;
+    background-color: #25abe0;
     width: 300px;
     padding: 20px 10px;
     display: flex;
@@ -32,7 +33,7 @@ body {
     bottom: 0;
     left: 0;
     transition: width 0.3s ease;
-    z-index: 1000;
+    z-index: 1000; 
 }
 
 /* Ocultar texto al contraer */
@@ -43,19 +44,52 @@ body {
 }
 
 .imagixicon {
-  margin-top: 10px; 
-  margin-bottom: 0;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff; /* Fondo blanco del recuadro */
+    padding: 5px; /* Espaciado interno reducido */
+    border: 3px solid #f0f0f0; /* Borde sutil */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    width: 260px; /* Ancho normal */
+    height: 110px; /* Alto normal */
+    margin: 0 auto 20px auto; /* Centrado con margen inferior */
+    transition: all 0.3s ease; /* Transición suave para el tamaño */
 }
 
+/* Imagen dentro del contenedor en estado normal */
 .imagixicon img {
-  width: 100%;                
-  height: auto;           
-  border-radius: 10px;     
-  object-fit: contain;      
+    width: 250px; /* Imagen más grande dentro del contenedor */
+    height: auto;
+    object-fit: contain; /* Evita deformación */
+    transition: all 0.3s ease; /* Transición suave para el tamaño */
 }
+
+.imagixicon:hover img {
+    transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
+}
+
+
+.menu-toggle:checked ~ footer {
+    left: 180px; /* Ajusta el espacio del sidebar contraído */
+    width: calc(100% - 180px); /* Ajusta el ancho restante */
+}
+
 
 .menu-toggle:checked ~ .sidebar {
     width: 180px;
+}
+
+.menu-toggle:checked ~ .sidebar .imagixicon {
+    width: 120px; 
+    height: 50px; 
+    padding: 3px; 
+}
+
+.menu-toggle:checked ~ .sidebar .imagixicon img {
+    width: 100px; 
+    height: auto;
 }
 
 /* Logo */
@@ -103,7 +137,7 @@ nav ul li a {
     justify-content: center;
     gap: 10px;
     text-decoration: none;
-    color: #333;
+    color: #ffffff;
     transition: background-color 0.3s ease, transform 0.2s;
     padding: 10px;
     border-radius: 8px;
@@ -156,10 +190,9 @@ nav ul li a:hover {
     text-align: center; /* Centra el texto horizontalmente */
 }
 
-/* Logout Button */
 .logout {
   background-color: #1c7ed6; /* Azul atractivo */
-  width: 200px;
+  width: 225px;
   height: 60px;
   border-radius: 30px;
   display: flex;
@@ -174,7 +207,7 @@ nav ul li a:hover {
 
 .logout img.logout-icon {
   width: 30px;
-  height: 30px;
+  height: 100px;
   transition: width 0.3s, height 0.3s;
   margin: auto;
 }
@@ -192,7 +225,7 @@ nav ul li a:hover {
 .logout img {
   width: 25px;
   height: 25px;
-  margin-left: 0px; /* Ajustar espacio entre el ícono y el texto */
+  margin-left: 10px; /* Ajustar espacio entre el ícono y el texto */
 }
 
 .logout .text {
@@ -281,13 +314,13 @@ nav ul li a:hover {
 }
 
 .card-title {
-    font-size: 36px;
-    font-weight: bold;
+    font-size: 32px; /* Tamaño reducido */
+    text-align: center;
 }
 
 /* Input Container */
 .input-container {
-    background-color: #5bbec0;
+    background-color: #25abe0;
     padding: 40px;
     border-radius: 30px;
     display: flex;
@@ -319,7 +352,7 @@ nav ul li a:hover {
 
 /* Confirm Button */
 .confirm-button {
-    background-color: #1c7ed6; /* Azul atractivo */
+    background-color: #25abe0; /* Azul atractivo */
     color: white;
     padding: 15px 40px;
     border-radius: 25px;
@@ -328,10 +361,11 @@ nav ul li a:hover {
     text-decoration: none;
     transition: background-color 0.3s, transform 0.2s;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
 }
 
 .confirm-button:hover {
-    background-color: #1971c2;
+    background-color: #53bac3;
     transform: scale(1.05);
 }
 
