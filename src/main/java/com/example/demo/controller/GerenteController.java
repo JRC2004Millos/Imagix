@@ -71,7 +71,7 @@ public class GerenteController {
         model.addAttribute("gerente", gerente);
         model.addAttribute("ideas", ideas);
         model.addAttribute("search", search);
-        return "mostrarIdeas"; // Renderiza la vista 'mostrarIdeas.html'
+        return "mostrarIdeasGerente"; // Renderiza la vista 'mostrarIdeas.html'
     }
 
     @GetMapping("/idea/{id}")
@@ -85,7 +85,7 @@ public class GerenteController {
 
         Gerente gerente = (Gerente) session.getAttribute("gerente");
         model.addAttribute("gerente", gerente);
-        return "detalleIdea";
+        return "detalleIdeaGerente";
     }
 
     // Aprobar una idea
@@ -175,9 +175,6 @@ public class GerenteController {
         
         return ResponseEntity.ok(response);
     }
-
-
-
 
 
 

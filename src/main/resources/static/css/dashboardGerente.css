@@ -44,7 +44,7 @@ body {
 /* Ensure the chart container is responsive and centered */
 .chart-container {
     width: 100%;
-    max-width: 1000px;
+    max-width: 1000000px;
     margin: 0 auto;
 }
 
