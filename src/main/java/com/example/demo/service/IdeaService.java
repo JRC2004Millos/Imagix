@@ -29,11 +29,7 @@ public interface IdeaService {
 
     List<Idea> findByGerenciaIdAndEstado(Long gerenciaId, String estado);
 
-<<<<<<< Updated upstream
     List<Idea> findByGerenciaId(Long gerenciaId);
-
-=======
     // Método para filtrar las ideas entre dos fechas
     public List<Idea> findIdeasBetweenDates(Date startDate, Date endDate);
->>>>>>> Stashed changes
 }

@@ -22,15 +22,12 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
     @Query("SELECT i FROM Idea i JOIN i.proponentes p WHERE p.id = :proponenteId")
     List<Idea> findIdeasByProponenteId(@Param("proponenteId") Long proponenteId);
 
-<<<<<<< Updated upstream
     List<Idea> findByFechaAprobacionIsNullAndGerenciaId(Long gerenciaId);
 
     List<Idea> findByGerenciaId(Long gerenciaId);
 
     boolean existsByNombreIdeaAndGerencia(String nombreIdea, Gerencia gerencia);
-=======
     // Método para encontrar ideas entre dos fechas
     List<Idea> findByFechaCreacionBetween(Date startDate, Date endDate);
->>>>>>> Stashed changes
 
 }
