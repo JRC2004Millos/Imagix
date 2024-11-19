@@ -16,6 +16,11 @@
             <img src="/images/imagix.png" alt="">
         </div>
         <nav>
+            <div class="menu-container">
+                <a class="boton_menu" href="a.html">Dashboard</a><br>
+                <a class="boton_menu" href="index.html">Ideas</a><br>
+                <a class="boton_menu" href="index.html">Inicio</a><br>
+            </div>
             <ul>
                 <li>
                     <div class="card-client">
@@ -24,11 +29,11 @@
                                 <path d="M224 256c70.7 0 128-57.31 128-128S153.3 0 96 128 153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3 448 381.6 370.4 304 274.7 304z"></path>
                             </svg>
                         </div>
-                        <p class="name-client" th:text="${promotor.name}">Nombre Usuario</p>
+                        <p class="name-client" th:text="${admin.nombre}">Nombre Usuario</p>
                     </div>
                 </li>
             </ul>
-        </nav>
+        </nav>        
 
         <button class="Btn" onclick="location.href='/login'">
             <div class="sign">

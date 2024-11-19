@@ -62,7 +62,7 @@ public class LoginController {
 
         Gerente gerente = gerenteService.findByEmail(email);
         if (gerente != null && gerente.getClave().equals(password)) {
-            session.setAttribute("gerente", admin);  // Guardar en sesión
+            session.setAttribute("gerente", gerente);  // Guardar en sesión
             return "redirect:/gerente";  // Redirigir al proponente
         }
 

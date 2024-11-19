@@ -248,9 +248,13 @@ public class DataBaseInit implements ApplicationRunner {
         workbook.close();
         inputStream.close();
 
-        // Agregar gerente
-        gerenteRepository.save(new Gerente("Pedro", "pedro@cremhelado.com.co", cargoRepository.findById(3L).get(),
+        // Agregar gerentes
+        gerenteRepository.save(new Gerente("Fernanda", "fernanda@cremhelado.com.co", "123", cargoRepository.findById(3L).get(),
+                regionalRepository.findById(2L).get(), gerenciaRepository.findById(1L).get()));
+        gerenteRepository.save(new Gerente("Pedro", "pedro@cremhelado.com.co", "123", cargoRepository.findById(3L).get(),
                 regionalRepository.findById(2L).get(), gerenciaRepository.findById(2L).get()));
+        gerenteRepository.save(new Gerente("Monica", "monica@cremhelado.com.co", "123", cargoRepository.findById(3L).get(),
+                regionalRepository.findById(2L).get(), gerenciaRepository.findById(3L).get()));
     }
 
     // Método para generar claves únicas del estilo "clave123", "clave124", etc.

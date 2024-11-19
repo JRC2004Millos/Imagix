@@ -13,12 +13,19 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String usuario;
+    private String nombre;
     private String clave;
 
     public Admin(){}
     public Admin(Long id, String usuario, String clave) {
         this.id = id;
         this.usuario = usuario;
+        this.clave = clave;
+    }
+    
+    public Admin(String usuario, String nombre, String clave) {
+        this.usuario = usuario;
+        this.nombre = nombre;
         this.clave = clave;
     }
     public Admin(String usuario, String clave) {
@@ -48,6 +55,12 @@ public class Admin {
 
     public void setClave(String clave) {
         this.clave = clave;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
 }

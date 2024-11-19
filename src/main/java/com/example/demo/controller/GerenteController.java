@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,12 +9,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.example.demo.model.Gerente;
 import com.example.demo.model.Idea;
+import com.example.demo.model.IdeaGroupedByMonthDTO;
 import com.example.demo.service.GerenteService;
 import com.example.demo.service.IdeaService;
 import jakarta.servlet.http.HttpSession;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.example.demo.model.Gerencia;
 
 @Controller
@@ -34,7 +47,7 @@ public class GerenteController {
             return "redirect:/login";  // Redirige si no hay sesión activa
         }
         model.addAttribute("gerente", gerente);  // Pasar el gerente al modelo
-        return "listaIdeas";  // Mostrar la vista listaIdeas.html
+        return "inicialGerente";  // Mostrar la vista listaIdeas.html
     }
 
     @GetMapping("/ideas")
@@ -114,4 +127,70 @@ public class GerenteController {
         model.addAttribute("message", "La idea ha sido rechazada.");
         return "redirect:/gerente/ideas"; // Redirige a la lista de ideas
     }
+
+    @GetMapping("/dashboard")
+    public String dashboardGerencia(Model model, HttpSession session) throws ParseException {
+
+        Gerente gerente = (Gerente) session.getAttribute("gerente");
+        if (gerente == null) {
+            return "redirect:/login"; // Redirige si no hay sesión activa
+        }
+
+        // Obtener el nombre de la gerencia
+        String nombreGerencia = gerente.getGerencia().getNombre();
+        model.addAttribute("nombreGerencia", nombreGerencia);
+        model.addAttribute("gerente", gerente);
+        
+        return "dashboardGerente";  // Mostrar la vista HTML
+    }
+
+    @GetMapping("/dashboardF")
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> dashboardGerencia(@RequestParam(value = "startDate") String startDate,
+                                                        @RequestParam(value = "endDate") String endDate,
+                                                        HttpSession session) throws ParseException {
+
+        Gerente gerente = (Gerente) session.getAttribute("gerente");
+        if (gerente == null) {
+            return null;  // Si no hay sesión activa, puedes retornar un valor apropiado
+        }
+
+        // Parsear las fechas proporcionadas por el usuario
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date startOfMonth = sdf.parse(startDate);
+        Date endOfMonth = sdf.parse(endDate);
+
+        // Obtener las ideas dentro del rango de fechas proporcionado
+        List<Idea> ideasPorMes = ideaService.findIdeasBetweenDates(startOfMonth, endOfMonth);
+
+        // Agrupar las ideas por mes
+        List<IdeaGroupedByMonthDTO> groupedIdeas = ideasPorMes.stream()
+            .collect(Collectors.groupingBy(idea -> getMonthFromDate(idea.getFechaCreacion())))
+            .entrySet().stream()
+            .map(entry -> new IdeaGroupedByMonthDTO(entry.getKey(), entry.getValue().size()))
+            .collect(Collectors.toList());
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("groupedIdeas", groupedIdeas);
+        
+        return ResponseEntity.ok(response);
+    }
+
+
+
+
+
+
+    @GetMapping("/ideasMes")
+    public String getIdeasPorMes(Model model) {
+        return null;
+    }
+
+    // Función para obtener el mes de una fecha (puedes adaptarlo si usas otro tipo de fecha)
+    private int getMonthFromDate(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.MONTH) + 1;  // Los meses en Calendar son 0-indexed, por eso sumamos 1
+    }
+
 }

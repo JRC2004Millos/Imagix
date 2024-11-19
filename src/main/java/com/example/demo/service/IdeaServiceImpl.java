@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,7 @@ public class IdeaServiceImpl implements IdeaService {
     }
 
     @Override
+<<<<<<< Updated upstream
     public List<Idea> findByFechaAprobacionIsNullAndGerenciaId(Long gerenciaId) {
         return ideaRepository.findByFechaAprobacionIsNullAndGerenciaId(gerenciaId);
     }
@@ -60,5 +62,9 @@ public class IdeaServiceImpl implements IdeaService {
     @Override
     public List<Idea> findByGerenciaId(Long gerenciaId) {
         return ideaRepository.findByGerenciaId(gerenciaId);
+=======
+    public List<Idea> findIdeasBetweenDates(Date startDate, Date endDate) {
+        return ideaRepository.findByFechaCreacionBetween(startDate, endDate);
+>>>>>>> Stashed changes
     }
 }

@@ -30,9 +30,10 @@ public class Gerente {
     public Gerente() {
     }
 
-    public Gerente(String name, String email, Cargo cargo, Regional regional, Gerencia gerencia) {
+    public Gerente(String name, String email, String clave, Cargo cargo, Regional regional, Gerencia gerencia) {
         this.name = name;
         this.email = email;
+        this.clave = clave;
         this.cargo = cargo;
         this.regional = regional;
         this.gerencia = gerencia;
