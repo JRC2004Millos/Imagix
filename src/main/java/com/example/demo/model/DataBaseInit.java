@@ -201,6 +201,13 @@ public class DataBaseInit implements ApplicationRunner {
                 String estadoCalificacion = getCellValue(row, 26);
                 String comentario = getCellValue(row, 27);
 
+                Gerencia gerencia = findOrCreateGerencia(gerenciaNom);
+
+                if (ideaRepository.existsByNombreIdeaAndGerencia(nombreIdea, gerencia)) {
+                    System.out.println("Idea repetida encontrada en índice: " + i + ", Nombre: " + nombreIdea);
+                    continue; // Saltar esta fila
+                }
+
                 // Crear y guardar una nueva idea
                 Idea idea = new Idea();
                 idea.setEstado(estado);

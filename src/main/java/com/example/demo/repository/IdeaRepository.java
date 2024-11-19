@@ -25,4 +25,6 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
 
     List<Idea> findByGerenciaId(Long gerenciaId);
 
+    boolean existsByNombreIdeaAndGerencia(String nombreIdea, Gerencia gerencia);
+
 }

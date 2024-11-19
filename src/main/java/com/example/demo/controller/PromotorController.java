@@ -143,15 +143,14 @@ public class PromotorController {
             idea.setCalificacion(nuevaCalificacion.floatValue());
         }
 
-        // Guardar los cambios
-        ideaService.save(idea);
-
         if ("aceptar".equals(accion)) {
             idea.setFechaAprobacion(new Date(System.currentTimeMillis()));
-
         } else if ("rechazar".equals(accion)) {
-
+            idea.setFechaAprobacion(null);
         }
+
+        // Guardar los cambios
+        ideaService.save(idea);
 
         // Redirigir nuevamente a la página de detalles
         return "redirect:/promotor/idea/" + id;
