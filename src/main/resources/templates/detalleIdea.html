@@ -54,6 +54,7 @@
         <div class="card">
           <h2 class="card-title">Detalles de la Idea</h2>
           <form th:action="@{/promotor/idea/{id}(id=${idea.id})}" method="post">
+            <input type="hidden" name="accion" id="accion" value="" />
             <div class="table-container">
               <table class="idea-details-table">
                 <!-- Campos existentes -->
@@ -155,10 +156,29 @@
 
             <!-- Botones de Aceptar y Rechazar -->
             <div class="action-buttons">
-              <button type="submit" id="btn-aceptar" class="accept-button">
+              <button
+                type="submit"
+                id="btn-aceptar"
+                class="accept-button"
+                onclick="document.getElementById('accion').value='aceptar'"
+              >
                 Aceptar
               </button>
-              <button type="button" class="reject-button">Rechazar</button>
+              <button
+                type="submit"
+                id="btn-rechazar"
+                class="reject-button"
+                onclick="document.getElementById('accion').value='rechazar'"
+              >
+                Rechazar
+              </button>
+              <button
+                type="button"
+                class="back-button"
+                onclick="window.location.href='/promotor/ideas'"
+              >
+                Volver
+              </button>
             </div>
           </form>
         </div>

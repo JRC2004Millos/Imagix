@@ -109,7 +109,7 @@ nav ul li {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background-color: #29a745;
+  background-color: #cc1f1f;
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -318,18 +318,17 @@ nav ul li {
 
 /* Back Button */
 .back-button {
-  margin-top: 20px;
-  padding: 10px 20px;
   background-color: #4e6e8e;
   color: white;
   border: none;
+  padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .back-button:hover {
-  background-color: #0fc947;
+  background-color: #3f5871;
 }
 
 /* Action Buttons */

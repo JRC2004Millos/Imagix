@@ -1,217 +1,273 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
 
 /* General */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-html, body {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto; /* Permite desplazamiento vertical en la página */
 }
 
 body {
-    display: flex;
-    background-color: #f7f9fc;
+  display: flex;
+  flex-direction: column; /* Asegura que el contenido fluya en columnas */
+  background-color: #f7f9fc;
 }
 
 /* Sidebar */
 .sidebar {
-    width: 200px;
-    background-color: #5bbec0;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 3px 0 8px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    transition: width 0.3s ease;
-    z-index: 1000;
+  width: 200px;
+  background-color: #5bbec0;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 3px 0 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease;
+  z-index: 1000;
 }
 
 .menu-toggle:checked ~ .sidebar {
-    width: 50px;
+  width: 50px;
 }
 
 .menu-toggle:checked ~ .sidebar .logo {
-    display: none;
+  display: none;
 }
 
 .logo {
-    margin-top: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  margin-top: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo img {
-    width: 80px;
-    transition: all 0.3s ease;
+  width: 80px;
+  transition: all 0.3s ease;
 }
 
 .menu-toggle:checked ~ .sidebar .logo img {
-    width: 40px;
+  width: 40px;
 }
 
 /* Main Content */
 .main-content {
-    flex: 1;
-    margin-left: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px; /* Reducimos el espacio entre elementos */
-    padding: 10px;
-    transition: margin-left 0.3s ease;
-    min-height: 100vh;
+  flex: 1;
+  margin-left: 200px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  min-height: 100vh; /* Asegura que ocupe toda la altura */
+  overflow-y: auto; /* Permite desplazamiento vertical */
 }
 
 .menu-toggle:checked ~ .main-content {
-    margin-left: 50px;
+  margin-left: 50px;
 }
 
-/* Ajustes para pantallas más pequeñas */
 @media (max-width: 768px) {
-    .main-content {
-        margin-left: 0;
-        padding: 10px;
-    }
-}
-
-/* Contenedor principal */
-.container {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
+  .main-content {
+    margin-left: 0;
     padding: 10px;
-    flex: 1;
+  }
 }
 
-/* Título del dashboard */
+/* Título del Dashboard */
 h1 {
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #333;
-    text-align: center;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  background-color: #f7f9fc; /* Fondo igual al de la página */
+  z-index: 10; /* Se coloca sobre otros elementos */
+  padding: 10px 0;
+  border-bottom: 2px solid #ccc; /* Línea separadora */
+  top: 0; /* Siempre visible en la parte superior */
 }
 
 /* Tarjetas */
 .card {
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-    overflow: hidden;
-    padding: 10px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #fff;
+  position: relative;
+  overflow: hidden;
+  height: 250px; /* Altura fija para todas las tarjetas */
+  width: 100%; /* Asegura que todas las tarjetas tengan el mismo ancho */
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Espacio entre título e ideas */
 }
 
-.card {
-    padding: 8px;
-    height: 75px; /* Ajustamos la altura */
-    width: 200px; /* Ajustamos el ancho */
+.card-header {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinea las ideas en la parte superior */
+  gap: 10px;
+  overflow-y: auto; /* Permite desplazamiento vertical dentro del cuadro */
+  padding-right: 10px;
+}
 
-/* Colores específicos para cada tarjeta */
-.bg-success { background-color: #28a745 !important; }
-.bg-danger { background-color: #dc3545 !important; }
-.bg-info { background-color: #17a2b8 !important; }
-.bg-warning { background-color: #ffc107 !important; color: #333; }
-.bg-primary { background-color: #007bff !important; }
-.bg-secondary { background-color: #6c757d !important; }
-.bg-dark { background-color: #343a40 !important; }
-.bg-light { background-color: #e9ecef !important; color: #333; }
-.bg-teal { background-color: #20c997 !important; }
-.bg-orange { background-color: #fd7e14 !important; }
-.bg-purple { background-color: #6f42c1 !important; }
-.bg-blue { background-color: #4a90e2 !important; }
-.bg-grey { background-color: #adb5bd !important; }
-.bg-white { background-color: #f8f9fa !important; color: #333; }
+.card-body ul {
+  list-style: none; /* Quita el estilo predeterminado de las listas */
+  padding: 0; /* Elimina el padding de la lista */
+  margin: 0; /* Elimina el margen de la lista */
+}
 
-/* Tarjetas faltantes */
-.card-en-desarrollo { background-color: #e9ecef !important; color: #333; }
-.card-filtro-comite { background-color: #e9ecef !important; color: #333; }
-.card-no-aplica { background-color: #f8f9fa !important; color: #333; }
-.card-mejor-idea { background-color: #adb5bd !important; color: #fff; }
+.card-body ul li {
+  position: relative; /* Necesario para usar ::before */
+  font-size: 14px; /* Tamaño del texto */
+  line-height: 1.5; /* Espaciado entre líneas */
+  color: #fff; /* Color del texto */
+  margin-bottom: 10px; /* Espaciado entre ideas */
+  white-space: normal; /* Permite que el texto sea multilineal */
+  text-overflow: ellipsis; /* Agrega puntos suspensivos si el texto es muy largo */
+}
 
-/* Grid Responsivo */
+.card-body ul li::before {
+  content: "•"; /* Agrega el punto al inicio */
+  color: #fff; /* Color del punto */
+  font-size: 18px; /* Tamaño del punto */
+  position: absolute; /* Posiciona el punto */
+  left: -15px; /* Ajusta el espacio entre el punto y el texto */
+}
+
+/* Scrollbar personalizado */
+.card-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.card-body::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
+}
+
+/* Colores para Tarjetas */
+.text-white {
+  color: #fff !important;
+}
+
+.bg-success {
+  background-color: #28a745 !important; /* Verde */
+}
+
+.bg-danger {
+  background-color: #dc3545 !important; /* Rojo */
+}
+
+.bg-info {
+  background-color: #17a2b8 !important; /* Azul */
+}
+
+.bg-warning {
+  background-color: #ffc107 !important; /* Amarillo */
+}
+
+.bg-purple {
+  background-color: #6f42c1 !important; /* Morado */
+}
+
+.bg-orange {
+  background-color: #fd7e14 !important; /* Naranja */
+}
+
+.bg-light {
+  background-color: #f8f9fa !important; /* Gris claro */
+  color: #333;
+}
+
+.bg-dark {
+  background-color: #343a40 !important; /* Gris oscuro */
+}
+
+.bg-teal {
+  background-color: #20c997 !important; /* Verde azulado */
+}
+
+/* Responsividad */
 .row {
-    width: 100%;
-    margin-bottom: 1%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 1rem;
 }
 
-.row-cols-1 {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 0.5rem;
+.col-md-3 {
+  flex: 0 0 calc(25% - 15px);
+  max-width: calc(25% - 15px);
 }
 
-@media (min-width: 576px) {
-    .row-cols-1 {
-        grid-template-columns: repeat(2, 1fr);
-    }
+@media (max-width: 992px) {
+  .col-md-3 {
+    flex: 0 0 calc(50% - 15px);
+    max-width: calc(50% - 15px);
+  }
 }
 
-@media (min-width: 768px) {
-    .row-cols-1 {
-        grid-template-columns: repeat(4, 1fr);
-    }
+@media (max-width: 576px) {
+  .col-md-3 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
 
-/* Botón flotante */
+/* Botón Flotante */
 .Btn {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    background-color: #29a745;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #29a745;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
 }
 
 .Btn:hover {
-    width: 125px;
-    border-radius: 40px;
+  width: 125px;
+  border-radius: 40px;
 }
 
-/* Botón principal */
-.d-flexjustify-content-centermt-4 {
-    margin-top: -20px; /* Subimos el botón considerablemente */
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease;
+.Btn img {
+  width: 20px;
+  height: 20px;
+  margin: auto;
 }
 
-/* Asegura visibilidad en pantallas pequeñas */
+/* Asegura Visibilidad en Pantallas Pequeñas */
+.ver-ideas-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
 @media (max-width: 576px) {
-    .ver-ideas-btn {
-        width: 100%;
-    }
-}
-
-/* Evita overflow */
-.container, .main-content {
-    overflow: visible !important;
+  .ver-ideas-btn {
+    width: 100%;
+  }
 }

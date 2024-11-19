@@ -25,7 +25,6 @@
           <table class="ideas-table">
             <thead>
               <tr>
-                <th>ID</th>
                 <th>Nombre</th>
                 <th>Descripción</th>
                 <th>Estado</th>
@@ -35,7 +34,6 @@
             </thead>
             <tbody>
               <tr th:each="idea : ${ideas}">
-                <td th:text="${idea.id}">1</td>
                 <td th:text="${idea.nombreIdea}">Idea Innovadora</td>
                 <td th:text="${#strings.abbreviate(idea.descripcion, 50)}">
                   Descripción corta...

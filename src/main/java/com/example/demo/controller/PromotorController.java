@@ -44,6 +44,9 @@ public class PromotorController {
             return "redirect:/login"; // Redirige si no hay sesión activa
         }
 
+        List<Idea> ideas = ideaService.findByGerenciaId(promotor.getGerencia().getId());
+        model.addAttribute("ideas", ideas);
+
         model.addAttribute("promotor", promotor); // Pasar el promotor al modelo
         return "listaIdeas"; // Mostrar la vista listaIdeas.html
     }
@@ -71,7 +74,8 @@ public class PromotorController {
         // búsqueda
         List<Idea> ideas;
 
-        ideas = ideaService.findByGerenciaIdAndEstado(gerencia.getId(), "Propuesta");
+        // ideas = ideaService.findByGerenciaIdAndEstado(gerencia.getId(), "Propuesta");
+        ideas = ideaService.findByFechaAprobacionIsNullAndGerenciaId(gerencia.getId());
 
         // Añadir datos al modelo para la vista Thymeleaf
         model.addAttribute("promotor", promotor);
@@ -123,7 +127,8 @@ public class PromotorController {
             @PathVariable("id") Long id,
             @RequestParam("estado") String estado,
             @RequestParam("nuevoComentario") String nuevoComentario,
-            @RequestParam(value = "nuevaCalificacion", required = false) Double nuevaCalificacion) {
+            @RequestParam(value = "nuevaCalificacion", required = false) Double nuevaCalificacion,
+            @RequestParam("accion") String accion) {
 
         // Buscar la idea por su ID
         Idea idea = ideaService.findById(id);
@@ -134,13 +139,19 @@ public class PromotorController {
         // Actualizar los campos de la idea
         idea.setEstado(estado);
         idea.setComentario(nuevoComentario);
-        idea.setFechaAprobacion(new Date(System.currentTimeMillis()));
         if (nuevaCalificacion != null) {
             idea.setCalificacion(nuevaCalificacion.floatValue());
         }
 
         // Guardar los cambios
         ideaService.save(idea);
+
+        if ("aceptar".equals(accion)) {
+            idea.setFechaAprobacion(new Date(System.currentTimeMillis()));
+
+        } else if ("rechazar".equals(accion)) {
+
+        }
 
         // Redirigir nuevamente a la página de detalles
         return "redirect:/promotor/idea/" + id;

@@ -22,14 +22,6 @@
         <form th:object="${idea}" th:action="@{/ideas/guardar}" method="post">
           <table class="details-table">
             <tr>
-              <th>ID</th>
-              <!-- Campo oculto para enviar el ID -->
-              <td>
-                <input type="hidden" name="id" th:value="${idea.id}" />
-                <span th:text="${idea.id}">123</span>
-              </td>
-            </tr>
-            <tr>
               <th>Nombre</th>
               <td>
                 <input

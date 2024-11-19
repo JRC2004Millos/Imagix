@@ -22,8 +22,12 @@ public interface IdeaService {
 
     public List<Idea> findIdeasByProponenteId(Long proponenteId);
 
+    public List<Idea> findByFechaAprobacionIsNullAndGerenciaId(Long gerenciaId);
+
     List<Idea> findByGerenciaAndEstado(Gerencia gerencia, String estado);
 
     List<Idea> findByGerenciaIdAndEstado(Long gerenciaId, String estado);
+
+    List<Idea> findByGerenciaId(Long gerenciaId);
 
 }

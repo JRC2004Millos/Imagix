@@ -51,4 +51,14 @@ public class IdeaServiceImpl implements IdeaService {
     public List<Idea> findIdeasByProponenteId(Long proponenteId) {
         return ideaRepository.findIdeasByProponenteId(proponenteId);
     }
+
+    @Override
+    public List<Idea> findByFechaAprobacionIsNullAndGerenciaId(Long gerenciaId) {
+        return ideaRepository.findByFechaAprobacionIsNullAndGerenciaId(gerenciaId);
+    }
+
+    @Override
+    public List<Idea> findByGerenciaId(Long gerenciaId) {
+        return ideaRepository.findByGerenciaId(gerenciaId);
+    }
 }
