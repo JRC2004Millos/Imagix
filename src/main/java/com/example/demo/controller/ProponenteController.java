@@ -456,4 +456,16 @@ public class ProponenteController {
         return "ideasProponente";
     }
 
+    @GetMapping("/perfil")
+    public String verPerfil(Model model, HttpSession session) {
+        Proponente proponente = (Proponente) session.getAttribute("proponente");
+
+        if (proponente == null) {
+            return "redirect:/login";
+        }
+
+        model.addAttribute("proponente", proponente);
+        return "perfilProponente";
+    }
+
 }
