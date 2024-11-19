@@ -15,7 +15,7 @@ body {
 
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Distribuir espacio entre el logo a la izquierda y los botones a la derecha */
   align-items: center;
   width: 100%;
   padding: 10px 20px;
@@ -26,6 +26,7 @@ header {
 
 .header .logo {
   display: inline-block;
+  margin-right: 20px; /* Separación entre logo y botones */
 }
 
 .header .login-button {
@@ -56,14 +57,18 @@ header nav ul li a:hover {
   color: #008ac9;
 }
 
+/* Mantenemos el botón de perfil y cerrar sesión alineados a la derecha */
+.header .right-buttons {
+  display: flex;
+}
+
 .btnprofile {
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
-  margin-right: 10px; /* Espaciado con el logo */
+  margin-left: 1440px; 
   display: flex;
-  align-items: center;
 }
 
 .img-profile {
@@ -72,26 +77,100 @@ header nav ul li a:hover {
   transition: transform 0.2s ease;
 }
 
-/* Efecto hover */
+
 .btnprofile:hover .img-profile {
   transform: scale(1.3); /* Se hace más grande al pasar el cursor */
 }
 
-.logout {
-  background-color: #a4c639; /* Color de logout */
-  padding: 12px 24px;
-  border: none;
-  border-radius: 25px;
-  font-size: 16px;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  margin-right: 20px; 
+
+.icon-small img {
+  width: 25px;
+  height: 25px;
+  margin-left: 10px; /* Ajustar espacio entre el ícono y el texto */
 }
 
-.logout:hover {
-  background-color: #8fb52b;
+.Btn {
+  background-color: #e81919;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+}
+
+.Btn img{
+  width: 22px;
+}
+
+.sign {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign svg {
+  width: 17px;
+}
+
+.sign svg path {
+  fill: white;
+}
+
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: .3s;
+}
+
+.Btn:hover {
+  width: 135px;
+  border-radius: 40px;
+  background-color: #fc0000;
+  transition-duration: .3s;
+}
+
+.Btn:hover .sign {
+  width: 30%;
+  transition-duration: .3s;
+  padding-left: 20px;
+}
+
+.Btn:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: .3s;
+  padding-right: 10px;
+}
+
+.Btn:active {
+  transform: translate(2px ,2px);
+}
+/* Texto de cerrar sesión (oculto inicialmente) */
+.text-logout {
+  opacity: 0;
+  margin-left: 10px; /* Espacio cuando aparezca */
+  white-space: nowrap;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateX(-10px);
+}
+
+.btn-logout:hover .text-logout {
+    opacity: 1; /* Texto visible */
+    transform: translateX(0); /* Despliegue suave */
 }
 
 .main-content {
@@ -225,23 +304,6 @@ footer .logo img {
   margin-top: 10px;
 }
 
-/* Desde Uiverse.io por Lealdos */ 
-.Btn {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 45px;
-  height: 45px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition-duration: 0.3s;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-  background-color: RGB(29, 185, 84);
-}
-
 .sign {
   width: 100%;
   transition-duration: 0.3s;
@@ -258,42 +320,7 @@ footer .logo img {
   fill: black;
 }
 
-/* Texto */
-.text {
-  position: absolute;
-  right: 0%;
-  width: 0%;
-  opacity: 0;
-  color: black;
-  font-size: 1.2em;
-  font-weight: 600;
-}
 
-/* Efecto hover en el ancho del botón */
-.Btn:hover {
-  width: 125px;
-  border-radius: 40px;
-  transition-duration: 0.3s;
-}
-
-.Btn:hover .sign {
-  width: 30%;
-  transition-duration: 0.3s;
-  padding-left: 20px;
-}
-
-/* Efecto hover en el texto del botón */
-.Btn:hover .text {
-  opacity: 1;
-  width: 70%;
-  transition-duration: 0.3s;
-  padding-right: 10px;
-}
-
-/* Efecto al hacer clic en el botón */
-.Btn:active {
-  transform: translate(2px, 2px);
-}
 
 .user-picture {
   overflow: hidden;
