@@ -21,7 +21,7 @@ Esta plataforma optimiza la gestión de ideas y retos empresariales, mejorando l
 
 # Proyecto Spring Boot - Instrucciones de Instalación y Ejecución
 
-Este documento describe los requisitos y los pasos necesarios para ejecutar el proyecto de Spring Boot.
+Este documento describe los requisitos y los pasos necesarios para ejecutar el proyecto de Spring Boot con base de datos H2.
 
 ---
 
@@ -35,43 +35,20 @@ Este documento describe los requisitos y los pasos necesarios para ejecutar el p
    - Versión mínima: **3.8.1**
    - [Descargar Maven](https://maven.apache.org/download.cgi)
 
-3. **Base de Datos**
-   - **MySQL**
-     - Versión mínima: **8.0**
-     - [Descargar MySQL](https://dev.mysql.com/downloads/)
-
-4. **IDE (Opcional)**
-   - **IntelliJ IDEA** o **Eclipse IDE**
+3. **IDE (Opcional)**
+   - **IntelliJ IDEA** o **Visual Studio Code**
    - Asegúrate de que el IDE soporte proyectos de Maven.
-
-5. **Postman (Opcional)**
-   - Herramienta para probar las APIs.
-   - [Descargar Postman](https://www.postman.com/downloads/)
 
 ---
 
 ## **Configuración de la Base de Datos**
 
-1. **Crear una base de datos en MySQL**
-   - Nombre sugerido: `spring_project_db`
-   - Crear con el comando:
-     ```sql
-     CREATE DATABASE spring_project_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-     ```
+Este proyecto utiliza **H2**, una base de datos embebida que no requiere instalación adicional. La configuración predeterminada ya está definida en el archivo `application.properties`.
 
-2. **Actualizar credenciales en el archivo `application.properties`**
-   - Ubicación: `src/main/resources/application.properties`
-   - Configurar las siguientes propiedades con tus credenciales:
-     ```properties
-     spring.datasource.url=jdbc:mysql://localhost:3306/spring_project_db
-     spring.datasource.username=tu_usuario
-     spring.datasource.password=tu_contraseña
-
-     # Configuración adicional
-     spring.jpa.hibernate.ddl-auto=update
-     spring.jpa.show-sql=true
-     spring.jpa.properties.hibernate.format_sql=true
-     ```
+### **Credenciales de la Base de Datos**
+- URL de conexión: `jdbc:h2:file:./Imagix_DB`
+- Usuario: `sa`
+- Contraseña: *(vacía)*
 
 ---
 
@@ -81,8 +58,8 @@ Este documento describe los requisitos y los pasos necesarios para ejecutar el p
 
 - Clona el proyecto desde GitHub:
   ```bash
-  git clone https://github.com/usuario/proyecto-springboot.git
-  cd proyecto-springboot
+  git clone https://github.com/JRC2004Millos/Imagix.git
+  cd Imagix
   ```
 
 ---
@@ -117,6 +94,13 @@ Este documento describe los requisitos y los pasos necesarios para ejecutar el p
   http://localhost:8100
   ```
 
+- Consola H2:
+  - URL: `http://localhost:8100/h2`
+  - **Credenciales**:
+    - URL JDBC: `jdbc:h2:file:./Imagix_DB`
+    - Usuario: `sa`
+    - Contraseña: *(vacía)*
+
 ---
 
 ## **API Endpoints Principales**
@@ -133,17 +117,13 @@ Este documento describe los requisitos y los pasos necesarios para ejecutar el p
 ## **Notas**
 
 - **Errores comunes**:
-  - **`NoSuchElementException`**: Verifica que las relaciones de datos (como gerencias y áreas) estén correctamente configuradas en la base de datos.
-  - **`HTTP 404` o `500`**: Asegúrate de que las tablas y las credenciales de la base de datos sean correctas.
+  - Si experimentas problemas al iniciar el proyecto, verifica los logs para identificar errores relacionados con la configuración o las dependencias.
   
 - **Configuración avanzada**:
   - Si necesitas cambiar el puerto de la aplicación, edita `application.properties`:
     ```properties
     server.port=8100
     ```
-
-- **Soporte**:
-  - Si tienes problemas para ejecutar el proyecto, revisa los logs o contacta con el equipo de desarrollo.
 
 ---
 
