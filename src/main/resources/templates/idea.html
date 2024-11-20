@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalle de la Idea</title>
+    <link rel="stylesheet" href="/css/idea.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="/images/imagix.png" alt="Logo Imagix" />
+      </div>
+    </header>
+
+    <main>
+      <div class="idea-icon">
+        <img src="/images/Idea.png" alt="Idea Icon" />
+      </div>
+      <div class="details-container">
+        <h2>Detalle de la Idea</h2>
+        <table class="details-table">
+          <tr>
+            <th>ID</th>
+            <td th:text="${idea.id}">123</td>
+          </tr>
+          <tr>
+            <th>Nombre</th>
+            <td th:text="${idea.nombreIdea}">Idea Innovadora</td>
+          </tr>
+
+          <tr>
+            <th>Fecha de Creación</th>
+            <td th:text="${idea.fechaCreacion}">2023-09-01</td>
+          </tr>
+          <tr>
+            <th>Problemática</th>
+            <td th:text="${idea.situacionDetectada}">Idea Innovadora</td>
+          </tr>
+
+          <tr>
+            <th>Descripción</th>
+            <td th:text="${idea.descripcion}">
+              Esta es una descripción detallada de la idea que puede incluir
+              muchos aspectos importantes...
+            </td>
+          </tr>
+          <tr>
+            <th>Estado</th>
+            <td th:text="${idea.estado}">Propuesta</td>
+          </tr>
+          <tr>
+            <th>Calificación</th>
+            <td th:text="${idea.calificacion}">8.5</td>
+          </tr>
+          <tr>
+            <th>Proponentes</th>
+            <td>
+              <ul>
+                <li
+                  th:each="proponente : ${idea.proponentes}"
+                  th:text="${proponente.nombre}"
+                >
+                  Proponente 1
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+        <div class="action-buttons">
+          <button
+            class="edit-button"
+            th:onclick="|window.location.href='/ideas/editar/' + ${idea.id}|"
+          >
+            Editar
+          </button>
+          <button
+            class="back-button"
+            onclick="window.location.href='/proponente/ideas'"
+          >
+            Volver
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="contact-info">
+        <div class="logo">
+          <img src="/images/imagix.png" alt="Logo Imagix" />
+        </div>
+        <p>Tel. 3002223344</p>
+        <p>Correo: imagix@gruponutresa.co</p>
+      </div>
+    </footer>
+  </body>
+</html>

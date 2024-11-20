@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.util.Map;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/proponente")
@@ -44,6 +46,7 @@ public class ProponenteController {
     private String API_KEY;
 
     private static final String EMBEDDING_URL = "https://api.openai.com/v1/embeddings";
+    private static final String OPENAI_URL = "https://api.openai.com/v1/chat/completions";
 
     // Mapa con las categorías y sus descripciones generales
     private static final Map<String, String> categorias = Map.of(
@@ -128,6 +131,90 @@ public class ProponenteController {
 
         return dotProduct / (Math.sqrt(normVec1) * Math.sqrt(normVec2));
     }
+
+    /**
+     * Genera una calificación sugerida para la idea dada.
+     *
+     * @param descripcionIdea La descripción de la idea.
+     * @return Una calificación sugerida como float.
+     * @throws IOException Si hay un error en la llamada a la API.
+     */
+    public float generarCalificacionSugerida(String descripcionIdea) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
+        // Crear el JSON para la solicitud en formato compatible con chat models
+        JSONObject json = new JSONObject();
+        json.put("model", "gpt-4");
+
+        // Mensajes según el formato de chat
+        JSONArray messages = new JSONArray();
+        messages.put(new JSONObject()
+                .put("role", "system")
+                .put("content", "Eres un evaluador que asigna calificaciones numéricas."));
+        messages.put(new JSONObject()
+                .put("role", "user")
+                .put("content", "A continuación, se describe una idea. Evalúa su claridad, relevancia y aplicabilidad. "
+                        +
+                        "Devuelve únicamente una calificación numérica (float) entre 0 y 10. No incluyas texto adicional.\n\n"
+                        +
+                        "Descripción de la idea: " + descripcionIdea + "\n\nCalificación numérica:"));
+
+        json.put("messages", messages);
+        json.put("max_tokens", 10); // Solo queremos un número
+        json.put("temperature", 0.0); // Fija la temperatura a 0 para respuestas más consistentes
+
+        // Configurar la solicitud HTTP
+        RequestBody body = RequestBody.create(
+                json.toString(),
+                MediaType.get("application/json; charset=utf-8"));
+
+        Request request = new Request.Builder()
+                .url(OPENAI_URL) // URL del endpoint
+                .header("Authorization", "Bearer " + API_KEY)
+                .post(body)
+                .build();
+
+        // Procesar la respuesta
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Error en la solicitud: " + response);
+            }
+
+            // Procesar el cuerpo de la respuesta
+            String responseBody = response.body().string();
+            JSONObject jsonResponse = new JSONObject(responseBody);
+
+            // Obtener la calificación como texto desde la respuesta de la API
+            String calificacionString = jsonResponse.getJSONArray("choices")
+                    .getJSONObject(0)
+                    .getJSONObject("message")
+                    .getString("content")
+                    .trim();
+
+            // Verificar si la respuesta es un número válido
+            try {
+                return Float.parseFloat(calificacionString);
+            } catch (NumberFormatException e) {
+                System.err.println("Respuesta inesperada de la API: " + calificacionString);
+                throw new IOException("La API devolvió un valor no numérico: " + calificacionString, e);
+            }
+        }
+    }
+
+    // /**
+    // * Genera un prompt para evaluar una idea.
+    // *
+    // * @param descripcionIdea La descripción de la idea.
+    // * @return Un prompt para la API de OpenAI.
+    // */
+    // private String generarPromptCalificacion(String descripcionIdea) {
+    // return "A continuación, se describe una idea. Evalúa su claridad, relevancia
+    // y aplicabilidad. " +
+    // "Devuelve únicamente una calificación numérica (float) entre 0 y 10. No
+    // incluyas texto adicional:\n\n" +
+    // "Descripción de la idea: " + descripcionIdea + "\n\n" +
+    // "Calificación numérica:";
+    // }
 
     // Página principal del proponente
     @GetMapping
@@ -246,6 +333,8 @@ public class ProponenteController {
         idea.setComentario("");
         idea.setEstadoCalificacion("Pendiente");
         idea.setFechaAprobacion(null);
+        float calificacionSugerida = generarCalificacionSugerida(idea.getDescripcion());
+        idea.setCalificacion(calificacionSugerida);
 
         // **Clasificar la idea según la descripción**
         String gerenciaString = clasificarIdea(descripcionSolucion);
@@ -352,4 +441,19 @@ public class ProponenteController {
     public String ideaCreada() {
         return "ideaCreada"; // Página de confirmación
     }
+
+    @GetMapping("/ideas")
+    public String verIdeaString(Model model, HttpSession session) {
+        Proponente proponente = (Proponente) session.getAttribute("proponente");
+
+        if (proponente == null) {
+            return "redirect:/login";
+        }
+
+        model.addAttribute("proponente", proponente);
+        model.addAttribute("ideas", ideaService.findIdeasByProponenteId(proponente.getId()));
+
+        return "ideasProponente";
+    }
+
 }

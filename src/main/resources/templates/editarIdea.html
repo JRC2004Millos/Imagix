@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar Idea</title>
+    <link rel="stylesheet" href="/css/idea.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="/images/imagix.png" alt="Logo Imagix" />
+      </div>
+    </header>
+
+    <main>
+      <div class="idea-icon">
+        <img src="/images/Idea.png" alt="Idea Icon" />
+      </div>
+      <div class="details-container">
+        <h2>Editar Idea</h2>
+        <form th:object="${idea}" th:action="@{/ideas/guardar}" method="post">
+          <table class="details-table">
+            <tr>
+              <th>ID</th>
+              <!-- Campo oculto para enviar el ID -->
+              <td>
+                <input type="hidden" name="id" th:value="${idea.id}" />
+                <span th:text="${idea.id}">123</span>
+              </td>
+            </tr>
+            <tr>
+              <th>Nombre</th>
+              <td>
+                <input
+                  type="text"
+                  name="nombreIdea"
+                  class="fixed-textarea"
+                  th:value="${idea.nombreIdea}"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>Fecha de Creación</th>
+              <td>
+                <span th:text="${idea.fechaCreacion}">2023-09-01</span>
+              </td>
+            </tr>
+            <tr>
+              <th>Problemática</th>
+              <td>
+                <textarea
+                  name="situacionDetectada"
+                  class="fixed-textarea"
+                  rows="3"
+                  required
+                  th:text="${idea.situacionDetectada}"
+                ></textarea>
+              </td>
+            </tr>
+            <tr>
+              <th>Descripción</th>
+              <td>
+                <textarea
+                  name="descripcion"
+                  class="fixed-textarea"
+                  rows="5"
+                  required
+                  th:text="${idea.descripcion}"
+                ></textarea>
+              </td>
+            </tr>
+            <tr>
+              <th>Estado</th>
+              <td th:text="${idea.estado}">Propuesta</td>
+            </tr>
+            <tr>
+              <th>Calificación</th>
+              <td th:text="${idea.calificacion}"></td>
+            </tr>
+            <tr>
+              <th>Proponentes</th>
+              <td>
+                <ul>
+                  <li
+                    th:each="proponente : ${idea.proponentes}"
+                    th:text="${proponente.nombre}"
+                  >
+                    Proponente 1
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </table>
+          <div class="action-buttons">
+            <button type="submit" class="edit-button">Guardar Cambios</button>
+            <button
+              type="button"
+              class="back-button"
+              onclick="window.location.href='/proponente/ideas'"
+            >
+              Volver
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <footer>
+      <div class="contact-info">
+        <div class="logo">
+          <img src="/images/imagix.png" alt="Logo Imagix" />
+        </div>
+        <p>Tel. 3002223344</p>
+        <p>Correo: imagix@gruponutresa.co</p>
+      </div>
+    </footer>
+  </body>
+</html>

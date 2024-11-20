@@ -20,6 +20,8 @@ public interface IdeaService {
 
     public List<Idea> findByNombreIdeaContainingIgnoreCase(String search);
 
+    public List<Idea> findIdeasByProponenteId(Long proponenteId);
+
     List<Idea> findByGerenciaAndEstado(Gerencia gerencia, String estado);
 
     List<Idea> findByGerenciaIdAndEstado(Long gerenciaId, String estado);

@@ -35,14 +35,21 @@ public class DataBaseInit implements ApplicationRunner {
     private PromotorRepository promotorRepository;
     @Autowired
     private ProponenteRepository proponenteRepository;
+    @Autowired
+    private AdminRepository adminRepository;
+    @Autowired
+    private GerenteRepository gerenteRepository;
 
     // Contador para generar claves únicas
     private final AtomicInteger contadorClave = new AtomicInteger(123); // Inicia en 123
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        //Promotores
-        //Ruta al archivo Excel
+        // Agregar admin
+        adminRepository.save(new Admin("admin", "admin"));
+
+        // Promotores
+        // Ruta al archivo Excel
         InputStream inputStream = getClass().getResourceAsStream("/static/excel/Base promotores 2024.xlsx");
 
         // Leer el archivo Excel
@@ -94,7 +101,7 @@ public class DataBaseInit implements ApplicationRunner {
         workbook.close();
         inputStream.close();
 
-        //Proponentes
+        // Proponentes
         // Ruta al archivo Excel
         inputStream = getClass().getResourceAsStream("/static/excel/Informe_Ideas_2020- Junio 2021.xlsx");
 
@@ -161,8 +168,7 @@ public class DataBaseInit implements ApplicationRunner {
         workbook.close();
         inputStream.close();
 
-        
-        //Ideas
+        // Ideas
         // Ruta al archivo Excel
         inputStream = getClass().getResourceAsStream("/static/excel/Informe_Ideas_2020- Junio 2021.xlsx");
 
@@ -199,8 +205,8 @@ public class DataBaseInit implements ApplicationRunner {
                 Idea idea = new Idea();
                 idea.setEstado(estado);
                 idea.setResponsable(responsable);
-                
-                //Proponentes
+
+                // Proponentes
                 List<Proponente> proponentes = new ArrayList<>();
                 proponentes.add(findOrCreateProponente(personaRegistro));
                 idea.setProponentes(proponentes);
@@ -234,7 +240,11 @@ public class DataBaseInit implements ApplicationRunner {
         // Cerrar recursos
         workbook.close();
         inputStream.close();
-    }   
+
+        // Agregar gerente
+        gerenteRepository.save(new Gerente("Pedro", "pedro@cremhelado.com.co", cargoRepository.findById(3L).get(),
+                regionalRepository.findById(2L).get(), gerenciaRepository.findById(2L).get()));
+    }
 
     // Método para generar claves únicas del estilo "clave123", "clave124", etc.
     private String generarClave() {
@@ -330,7 +340,7 @@ public class DataBaseInit implements ApplicationRunner {
             return 0.0f; // Valor predeterminado en caso de error
         }
     }
-    
+
     // Método auxiliar para verificar si un String es numérico
     private boolean esNumero(String texto) {
         try {
@@ -341,25 +351,24 @@ public class DataBaseInit implements ApplicationRunner {
         }
     }
 
-    //Método para evitar que la descripción sea más larga de 255, si se coloca no se va a tener en cuenta
+    // Método para evitar que la descripción sea más larga de 255, si se coloca no
+    // se va a tener en cuenta
     private String truncarDescripcion(String descripcion) {
         if (descripcion.length() > 255) {
             return descripcion.substring(0, 255); // Truncar a 255 caracteres
         }
         return descripcion;
     }
-    
-    
 
     // Método para convertir una cadena a fecha de forma segura
     private java.sql.Date convertirStringAFecha(String fecha) {
         if (fecha == null || fecha.trim().isEmpty()) {
             System.err.println("Advertencia: La fecha está vacía o es nula.");
-            return null; 
+            return null;
         }
-    
+
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-    
+
         try {
             Date parsedDate = formato.parse(fecha.trim());
             return new java.sql.Date(parsedDate.getTime());
@@ -384,13 +393,13 @@ public class DataBaseInit implements ApplicationRunner {
         try {
             if (texto == null || texto.trim().isEmpty()) {
                 System.out.println("Advertencia: Cadena vacía, devolviendo 0.");
-                return 0;  // Devuelve 0 o cualquier valor predeterminado
+                return 0; // Devuelve 0 o cualquier valor predeterminado
             }
             return Integer.parseInt(texto);
         } catch (NumberFormatException e) {
             System.err.println("Error: No se pudo convertir '" + texto + "' a entero.");
-            return 0;  // O cualquier valor predeterminado
+            return 0; // O cualquier valor predeterminado
         }
     }
-    
+
 }

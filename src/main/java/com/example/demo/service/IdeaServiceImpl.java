@@ -47,4 +47,8 @@ public class IdeaServiceImpl implements IdeaService {
         return ideaRepository.findByGerenciaIdAndEstado(gerenciaId, estado);
     }
 
+    @Override
+    public List<Idea> findIdeasByProponenteId(Long proponenteId) {
+        return ideaRepository.findIdeasByProponenteId(proponenteId);
+    }
 }
