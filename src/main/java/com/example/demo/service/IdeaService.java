@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.Gerencia;
 import com.example.demo.model.Idea;
+import com.example.demo.model.IdeaSimilarDTO;
 
 @Service
 public interface IdeaService {
@@ -28,6 +29,10 @@ public interface IdeaService {
     public List<Idea> findIdeasByProponenteIdAndEstadoImplementadaIsTrue(Long proponenteId);
 
     public List<Idea> findByFechaAprobacionIsNullAndGerenciaId(Long gerenciaId);
+
+    public List<String> findAllDescriptions();
+
+    public IdeaSimilarDTO calculateAllSimilarities(List<String> ideas, String descripcionSolucion);
 
     List<Idea> findByGerenciaAndEstado(Gerencia gerencia, String estado);
 

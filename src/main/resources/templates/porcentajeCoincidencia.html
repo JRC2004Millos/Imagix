@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Idea Similar Encontrada</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/similitudIdea.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1 class="title">¡Tu idea es muy similar a otra existente!</h1>
+        <p class="message">
+          Hemos detectado que tu idea tiene un
+          <strong
+            th:text="${#numbers.formatDecimal(ideaSimilar.similaridad, 1, 1)} + '%'"
+          >
+            ></strong
+          >
+          de similitud con la siguiente idea:
+        </p>
+        <div class="idea-details">
+          <h2 class="idea-name" th:text="${ideaSimilar.nombreIdea}">
+            Nombre de la Idea Similar
+          </h2>
+          <p class="idea-description">
+            <strong>Descripción:</strong>
+            <span th:text="${ideaSimilar.descripcion}">Descripción</span>
+          </p>
+          <p class="contact-message">
+            Te invitamos a contactar al proponente de esta idea para explorar
+            posibles sinergias.
+          </p>
+          <ul class="contact-info">
+            <li>
+              <strong>Proponente:</strong>
+              <span th:text="${ideaSimilar.nombreProponente}"
+                >Nombre del Proponente</span
+              >
+            </li>
+            <li>
+              <strong>Teléfono:</strong>
+              <span th:text="${ideaSimilar.telefonoProponente}">Teléfono</span>
+            </li>
+            <li>
+              <strong>Correo Electrónico:</strong>
+              <span th:text="${ideaSimilar.correoProponente}"
+                >Correo Electrónico</span
+              >
+            </li>
+          </ul>
+        </div>
+        <p class="warning">
+          Debido al alto porcentaje de similitud, no guardaremos tu idea como
+          una nueva. Si consideras que tu propuesta tiene aspectos únicos, por
+          favor contáctanos.
+        </p>
+        <button
+          class="back-button"
+          onclick="window.location.href='/proponente'"
+        >
+          Volver al Inicio
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

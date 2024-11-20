@@ -3,97 +3,213 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Big Brew</title>
     <link rel="stylesheet" href="/css/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Acme&display=swap"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <title>Index Imagix</title>
+
+    <!-- Incluir el CSS de Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Incluir el JS de Leaflet -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   </head>
   <body>
     <header>
       <div id="logo">
         <img src="/images/imagix.png" alt="logo" width="170" height="90" />
       </div>
-
-      <ul>
-        <li><a href="#nosotros">¿Que es?</a></li>
-        <li><a href="#misionyvision">¿Que se espera?</a></li>
-        <li><a href="#somos">¿Como surgio?</a></li>
-
-        <li>
-          <a th:href="@{/login}"><button class="button">Acceder</button></a>
-        </li>
-      </ul>
+      <nav>
+        <ul>
+          <li><a href="#nosotros" class="btnP">¿Qué es?</a></li>
+          <li><a href="#misionyvision" class="btnS">¿Qué se espera?</a></li>
+          <li><a href="#somos" class="btnT">¿Cómo surgió?</a></li>
+          <li><a class="order-now" th:href="@{/login}">Acceder</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main>
-      <div id="nosotros">
-        <div id="imagenNosotros">
-          <img src="/images/imagix2.png" alt="Descripción de la imagen" />
+      <section class="hero" id="nosotros">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h2><span>¿QUÉ ES IMAGIX?</span></h2>
+            <br />
+            <p>
+              Imagix es el modelo corporativo de gestión integral de innovación
+              de Grupo Nutresa, accionable y medible, que evoluciona
+              permanentemente para construir con hechos el futuro y la
+              competitividad del Grupo de acuerdo con su estrategia, articulando
+              recursos, procesos, y el desarrollo de capacidades dentro y fuera
+              de la organización de forma sistemática y deliberada.
+            </p>
+          </div>
+          <div class="hero-image">
+            <img src="images/imagix2.png" alt="Imagix" />
+          </div>
         </div>
-        <div id="leftNosotros">
-          <h2>Que es Imagix?</h2>
-          <p>
-            Imagix es el modelo corporativo de gestión integral de innovación de
-            Grupo Nutresa, accionable y medible, que evoluciona permanentemente
-            para construir con hechos el futuro y la competitividad del Grupo de
-            acuerdo con su estrategia, articulando recursos, procesos, y el
-            desarrollo de capacidades dentro y fuera de la organización de forma
-            sistemática y deliberada.
-          </p>
-        </div>
-      </div>
+      </section>
 
-      <div id="misionyvision">
-        <div id="leftmisionyvision">
-          <h2>Misión y Visión</h2>
-          <p>
-            En Imagix Nutresa, nuestra misión es fomentar una cultura de
-            innovación y mejoramiento continuo dentro de toda la organización.
-            Nos enfocamos en crear un entorno donde las ideas innovadoras
-            florezcan y sean integradas en nuestros procesos, productos y
-            servicios, con el fin de generar valor sostenible para la
-            organización y nuestros stakeholders Creemos firmemente que la
-            innovación no solo es responsabilidad de un departamento específico,
-            sino un esfuerzo colectivo en el que todos los colaboradores pueden
-            contribuir con su creatividad y pensamiento crítico. <br /><br />A
-            largo plazo, Imagix Nutresa se propone consolidarse como un líder en
-            la gestión de la innovación y el conocimiento, implementando
-            programas como Éxitos Innovadores, que nos permiten estructurar y
-            formalizar los esfuerzos innovadores. Nuestro objetivo es
-            desarrollar nuestro capital humano, impulsando a nuestros
-            colaboradores a ser parte activa en la creación de soluciones
-            innovadoras que impulsen la organización hacia adelante.
-          </p>
+      <section class="intro" id="misionyvision">
+        <div class="content">
+          <div class="box vision">
+            <h3>Visión</h3>
+            <p>
+              Como proyección a largo plazo, Imagix Nutresa se propone
+              consolidarse como un líder en la gestión de la innovación y el
+              conocimiento, implementando programas como Éxitos Innovadores, que
+              nos permiten estructurar y formalizar los esfuerzos innovadores.
+              Nuestro objetivo es desarrollar nuestro capital humano, impulsando
+              a nuestros colaboradores a ser parte activa en la creación de
+              soluciones innovadoras que impulsen la organización hacia
+              adelante.
+            </p>
+          </div>
+          <div class="box mission">
+            <h3>Misión</h3>
+            <p>
+              En Imagix Nutresa, nuestra misión es fomentar una cultura de
+              innovación y mejoramiento continuo dentro de toda la organización.
+              Nos enfocamos en crear un entorno donde las ideas innovadoras
+              florezcan y sean integradas en nuestros procesos, productos y
+              servicios, con el fin de generar valor sostenible para la
+              organización y nuestros stakeholders. Creemos firmemente que la
+              innovación es un esfuerzo colectivo en el que todos los
+              colaboradores pueden contribuir con su creatividad y pensamiento
+              crítico.
+            </p>
+          </div>
         </div>
-        <div id="imagenmisionyvision">
-          <img src="/images/imagix3.png" alt="Vision y mision" />
+      </section>
+
+      <section class="hero" id="somos">
+        <div class="hero-content">
+          <div class="hero-image">
+            <img src="images/imagix2.png" alt="Imagix" />
+          </div>
+          <div class="hero-text" id="somosText">
+            <h2>¿Como Surgió?</h2>
+            <p>
+              Imagix surgió como una iniciativa de Grupo Nutresa enfocada en
+              fomentar la innovación dentro de la organización, permitiendo que
+              todas las áreas del grupo empresarial participaran activamente en
+              la creación y desarrollo de nuevas ideas y proyectos innovadores.
+              Su origen se enmarca en la necesidad de transformar los retos y
+              cambios del mercado en oportunidades para mejorar la
+              competitividad de Nutresa a nivel global.
+            </p>
+          </div>
         </div>
-      </div>
-      <div id="somos">
-        <div id="imagenSomos">
-          <img src="/images/imagix4.jpeg" alt="Descripción de la imagen" />
+      </section>
+
+      <section class="products">
+        <h2>Exitos Innovadores</h2>
+        <div class="product-list">
+          <div class="product">
+            <img src="/images/espatula.jpg" alt="Product" height="200px" />
+            <h4>Espatula gold</h4>
+            <p>
+              Se desarrolla una espátula que cumple 2 funciones a la vez (
+              Espátula y recogedor) manteniendo el mismo tamaño y con capacidad
+              de almacenamiento de escarcha, manteniendo el diseño y forma
+              ergonómica.
+            </p>
+          </div>
+          <div class="product">
+            <img src="/images/excel.png" alt="Product" />
+            <h4>Recordatorio Pendiente Sugar</h4>
+            <p>
+              Se crea un formato en excel donde se relacionan todos los usuarios
+              de la oficina y en cada columna se clasifican los estados de los
+              casos para evidenciar si están aplazados, vencidos o para
+              gestionar en el día.
+            </p>
+          </div>
+          <div class="product">
+            <img src="/images/canecaAzul.png" alt="Product" />
+            <h4>Caneca Azul para Residuos</h4>
+            <p>
+              El ingrediente Bon que se utiliza en la paletera 2 viene embazado
+              en canecas azules, estas canecas (300 aproximadamente) se están
+              almacenando sin ninguna función, ocupando espacio
+              innecesariamente. Se propone utilizar estas canecas azules para
+              recolectar
+            </p>
+          </div>
         </div>
-        <div id="leftSomos">
-          <h2>Como surgio?</h2>
-          <p>
-            Imagix surgió como una iniciativa de Grupo Nutresa enfocada en
-            fomentar la innovación dentro de la organización, permitiendo que
-            todas las áreas del grupo empresarial participaran activamente en la
-            creación y desarrollo de nuevas ideas y proyectos innovadores. Su
-            origen se enmarca en la necesidad de transformar los retos y cambios
-            del mercado en oportunidades para mejorar la competitividad de
-            Nutresa a nivel global.
-          </p>
-        </div>
-      </div>
+      </section>
+
+      <section class="final">
+        <section class="map-section">
+          <h2 class="titFinal">Ubicaciones de Nuestras Sucursales</h2>
+          <div id="map" style="height: 400px"></div>
+        </section>
+
+        <section class="form-container">
+          <h2 class="titFinal">Formulario de Contacto</h2>
+          <br />
+          <form action="#" method="POST">
+            <!-- Campo para Nombre -->
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                required
+                placeholder="Escribe tu nombre"
+              />
+            </div>
+
+            <!-- Campo para Teléfono -->
+            <div class="form-group">
+              <label for="telefono">Teléfono</label>
+              <input
+                type="tel"
+                id="telefono"
+                name="telefono"
+                required
+                placeholder="Escribe tu teléfono"
+              />
+            </div>
+
+            <!-- Campo para Correo -->
+            <div class="form-group">
+              <label for="correo">Correo</label>
+              <input
+                type="email"
+                id="correo"
+                name="correo"
+                required
+                placeholder="Escribe tu correo"
+              />
+            </div>
+
+            <!-- Campo para Sucursal -->
+            <div class="form-group">
+              <label for="sucursal">Sucursal</label>
+              <select id="sucursal" name="sucursal" required>
+                <option value="">Selecciona una sucursal</option>
+                <option value="Bucaramanga">Bucaramanga</option>
+                <option value="Bogota">Bogotá</option>
+                <option value="Monteria">Montería</option>
+                <option value="Manizales">Manizales</option>
+                <option value="Armenia">Armenia</option>
+                <option value="Pereira">Pereira</option>
+                <option value="Barranquilla">Barranquilla</option>
+                <option value="Cali">Cali</option>
+                <option value="Medellin">Medellín</option>
+              </select>
+            </div>
+
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="confirm-button">Enviar</button>
+          </form>
+        </section>
+      </section>
     </main>
 
     <footer>
@@ -153,10 +269,7 @@
         </ul>
       </div>
     </footer>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
+
+    <script src="/js/mapa.js"></script>
   </body>
 </html>

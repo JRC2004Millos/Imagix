@@ -19,6 +19,8 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
 
     List<Idea> findByGerenciaIdAndEstado(Long gerenciaId, String estado);
 
+    Idea findByDescripcion(String descripcion);
+
     @Query("SELECT i FROM Idea i JOIN i.proponentes p WHERE p.id = :proponenteId")
     List<Idea> findIdeasByProponenteId(@Param("proponenteId") Long proponenteId);
 
@@ -27,6 +29,9 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
 
     @Query("SELECT i FROM Idea i JOIN i.proponentes p WHERE p.id = :proponenteId AND i.estadoImplementada = true")
     List<Idea> findIdeasByProponenteIdAndEstadoImplementadaIsTrue(Long proponenteId);
+
+    @Query("SELECT i.descripcion FROM Idea i")
+    List<String> findAllDescriptions();
 
     List<Idea> findByFechaAprobacionIsNullAndGerenciaId(Long gerenciaId);
 

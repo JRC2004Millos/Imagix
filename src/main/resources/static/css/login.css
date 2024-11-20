@@ -1,205 +1,242 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
 body {
-    background: linear-gradient(135deg, #e0f2ff, #c1e0f8);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+  background: linear-gradient(135deg, #e0f2ff, #c1e0f8);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 10px 20px;
-    background-color: #fff;
-    border-bottom: 6px solid #008ac9;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #fff;
+  border-bottom: 6px solid #008ac9;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .header .logo {
-    display: inline-block;
+  display: inline-block;
 }
 
 .header .login-button {
-    margin-left: auto;
+  margin-left: auto;
 }
 
 header .logo img {
-    height: 50px;
+  height: 50px;
 }
 
 header nav ul {
-    list-style: none;
-    display: flex;
+  list-style: none;
+  display: flex;
 }
 
 header nav ul li {
-    margin: 0 25px;
+  margin: 0 25px;
 }
 
 header nav ul li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 18px;
-    transition: color 0.3s ease;
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  transition: color 0.3s ease;
 }
 
 header nav ul li a:hover {
-    color: #008ac9;
+  color: #008ac9;
 }
 
 .login-button a {
-    text-decoration: none;
-    background-color: #8cd98c;
-    padding: 12px 25px;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    transition: background-color 0.3s ease;
+  text-decoration: none;
+  background-color: #8cd98c;
+  padding: 12px 25px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
 }
 
 .login-button a:hover {
-    background-color: #7ec883;
+  background-color: #7ec883;
 }
 
 main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    flex-grow: 1;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
 }
 
 .login-container {
-    background-color: #a891dd; 
-    padding: 50px;
-    border-radius: 20px;
-    text-align: center;
-    width: 800px; 
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    position: relative;
-    z-index: 2;
-    padding-top: 90px;
-    transition: transform 0.3s ease;
+  background-color: #a891dd;
+  padding: 50px;
+  border-radius: 20px;
+  text-align: center;
+  width: 800px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 2;
+  padding-top: 90px;
+  transition: transform 0.3s ease;
 }
 
 .login-container:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .login-container h2 {
-    background-color: #583d95;
-    color: white;
-    padding: 20px;
-    border-radius: 12px;
-    width: 80%;
-    position: absolute;
-    top: -35px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
+  background-color: #583d95;
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 80%;
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
 }
 
 .input-group {
-    margin-bottom: 25px;
-    text-align: left;
+  margin-bottom: 25px;
+  text-align: left;
 }
 
 .input-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: white;
-    font-size: 16px; 
-    font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .input-group input {
-    width: 100%;
-    padding: 20px;
-    border-radius: 12px;
-    border: none;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 15px;
-    font-size: 16px;
-    transition: box-shadow 0.3s ease;
+  width: 100%;
+  padding: 20px;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  font-size: 16px;
+  transition: box-shadow 0.3s ease;
 }
 
 .input-group input:focus {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-button {
-    width: 100%;
-    background: linear-gradient(90deg, #583d95, #7fbddc);
-    color: white;
-    padding: 20px;
-    border: none;
-    border-radius: 40px;
-    font-size: 20px; 
-    cursor: pointer;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
-    transition: background 0.3s ease, box-shadow 0.3s ease;
+.login-button {
+  width: 100%;
+  background: linear-gradient(90deg, #583d95, #7fbddc);
+  color: white;
+  padding: 20px;
+  border: none;
+  border-radius: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-button:hover {
-    background: linear-gradient(90deg, #7fbddc, #aeb4ae);
-    box-shadow: 0px 8px 14px rgba(0, 0, 0, 0.3);
+.login-button:hover {
+  background: linear-gradient(90deg, #7fbddc, #aeb4ae);
+  box-shadow: 0px 8px 14px rgba(0, 0, 0, 0.3);
 }
 
 footer {
-    background-color: white;
-    padding: 20px;
-    text-align: center;
-    color: black;
-    position: relative;
-    width: 100%;
-    bottom: 0;
-    border-top: 6px solid #008ac9;
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+  color: black;
+  position: relative;
+  width: 100%;
+  bottom: 0;
+  border-top: 6px solid #008ac9;
 }
 
 footer .contact-info {
-    font-size: 14px;
-    margin-bottom: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 
 footer .logo img {
-    height: 50px;
-    margin-top: 10px;
+  height: 50px;
+  margin-top: 10px;
 }
 
 .idea-icon {
-    position: absolute;
-    top: 100px;
-    right: 20px;
-    animation: bounce 2s infinite;
+  position: absolute;
+  top: 100px;
+  right: 20px;
+  animation: bounce 2s infinite;
 }
 
 .idea-icon img {
-    width: 60px;
-    height: auto;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-    top: 20px; 
-    right: 10px; 
+  width: 60px;
+  height: auto;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  top: 20px;
+  right: 10px;
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-10px);
-    }
-    60% {
-        transform: translateY(-5px);
-    }
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* From Uiverse.io by Jedi-hongbin */
+.btn-back {
+  display: flex;
+  height: 3em;
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+  background-color: #eeeeee4b;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  border: none;
+  background: #fff;
+}
+
+.btn-back > svg {
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 20px;
+  transition: all 0.4s ease-in;
+}
+
+.btn-back:hover > svg {
+  font-size: 1.2em;
+  transform: translateX(-5px);
+}
+
+.btn-back:hover {
+  box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
+  transform: translateY(-2px);
 }

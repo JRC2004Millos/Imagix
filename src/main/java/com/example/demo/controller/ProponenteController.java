@@ -14,6 +14,7 @@ import com.example.demo.service.GerenciaService;
 import com.example.demo.service.IdeaService;
 import com.example.demo.service.ProponenteService;
 import com.example.demo.model.Idea;
+import com.example.demo.model.IdeaSimilarDTO;
 import com.example.demo.model.Proponente;
 
 import okhttp3.*;
@@ -21,17 +22,19 @@ import okhttp3.RequestBody;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Map;
 
 import jakarta.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/proponente")
 public class ProponenteController {
+
+    private static final Logger log = LoggerFactory.getLogger(ProponenteController.class);
 
     @Autowired
     private ProponenteService proponenteService;
@@ -294,16 +297,26 @@ public class ProponenteController {
     @PostMapping("/descripcionSolucion")
     public String recibirDescripcionSolucion(
             @RequestParam("descripcionSolucion") String descripcionSolucion,
-            HttpSession session) throws IOException {
+            HttpSession session, Model model) throws IOException {
 
         if (descripcionSolucion == null || descripcionSolucion.trim().isEmpty()) {
             throw new IllegalArgumentException("La descripción de la solución no puede estar vacía.");
         }
 
-        // Guardar la descripción de la solución en la sesión
         session.setAttribute("descripcionSolucion", descripcionSolucion);
 
-        // Recuperar los datos de la idea desde la sesión
+        List<String> descriptions = ideaService.findAllDescriptions();
+        IdeaSimilarDTO ideaSimilar = ideaService.calculateAllSimilarities(descriptions, descripcionSolucion);
+
+        if (ideaSimilar.getSimilaridad() > 40.0) {
+            log.info("La idea es similar a otras existentes. Mayor similitud: " + ideaSimilar.getSimilaridad() + "%");
+            model.addAttribute("ideaSimilar", ideaSimilar);
+            return "porcentajeCoincidencia";
+        }
+
+        log.info("La idea no es similar a ninguna existente. Pasó con un " + ideaSimilar.getSimilaridad()
+                + "% de similitud.");
+
         String nombreIdea = (String) session.getAttribute("nombreIdea");
         String descripcionProblema = (String) session.getAttribute("descripcionProblema");
         boolean estadoImplementada = (boolean) session.getAttribute("estadoImplementada");
@@ -311,61 +324,40 @@ public class ProponenteController {
         @SuppressWarnings("unchecked")
         List<Proponente> proponentes = (List<Proponente>) session.getAttribute("proponentes");
 
-        // Gestionar proponentes
-        List<Proponente> proponentesGestionados = new ArrayList<>();
-        for (Proponente proponente : proponentes) {
-            Proponente proponenteGestionado = proponenteService.findById(proponente.getId());
-            proponentesGestionados.add(proponenteGestionado);
+        if (nombreIdea == null || proponentes == null) {
+            throw new IllegalStateException("Faltan datos necesarios en la sesión.");
         }
 
-        // Crear y clasificar la idea
+        List<Proponente> proponentesGestionados = proponentes.stream()
+                .map(p -> proponenteService.findById(p.getId()))
+                .toList();
+
         Idea idea = new Idea();
         idea.setNombreIdea(nombreIdea);
         idea.setDescripcion(descripcionSolucion);
         idea.setSituacionDetectada(descripcionProblema);
-        idea.setProponentes(proponentesGestionados); // Usar la lista gestionada
+        idea.setProponentes(proponentesGestionados);
         idea.setFechaCreacion(new Date(System.currentTimeMillis()));
         idea.setEstadoImplementada(estadoImplementada);
         if (estadoImplementada) {
             idea.setFechaImplementacion(fechaImplementacion);
             idea.setEstado("En Desarrollo");
+        } else {
+            idea.setEstado("Propuesta");
         }
-        idea.setEstado("Propuesta");
-        // Recuperar el proponente desde la sesión y verificar que no sea null
+
         Proponente proponente = (Proponente) session.getAttribute("proponente");
         idea.setResponsable(proponente != null ? proponente.getNombre() : "Desconocido");
+        idea.setCalificacion(generarCalificacionSugerida(descripcionSolucion));
+        idea.setGerencia(gerenciaService.findByNombre(clasificarIdea(descripcionSolucion)));
 
-        idea.setCalificacion(0);
-        idea.setComentario("");
-        idea.setEstadoCalificacion("Pendiente");
-        idea.setFechaAprobacion(null);
-        float calificacionSugerida = generarCalificacionSugerida(idea.getDescripcion());
-        idea.setCalificacion(calificacionSugerida);
-
-        // **Clasificar la idea según la descripción**
-        String gerenciaString = clasificarIdea(descripcionSolucion);
-
-        idea.setGerencia(gerenciaService.findByNombre(gerenciaString)); // Asignar la categoría clasificada
-
-        System.out.println("Se ha clasificado la idea como: " + gerenciaString);
-
-        // Guardar la idea usando el servicio IdeaService
         ideaService.save(idea);
 
-        System.out.println("Se ha guardado la idea: " + idea.getNombreIdea());
-
-        // Mostrar los proponentes asociados
-        for (Proponente p : proponentesGestionados) {
-            System.out.println("Se ha guardado el proponente: " + p.getNombre());
-        }
-
-        // Limpiar los atributos de la sesión
         session.removeAttribute("nombreIdea");
         session.removeAttribute("descripcionProblema");
         session.removeAttribute("descripcionSolucion");
         session.removeAttribute("proponentes");
 
-        // Redirigir a la pantalla final o dashboard
         return "redirect:/proponente";
     }
 

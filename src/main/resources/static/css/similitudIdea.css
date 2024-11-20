@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f7f9fc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.title {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.message {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.idea-details {
+  background-color: #f1f5f9;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.idea-name {
+  font-size: 22px;
+  color: #2c7be5;
+  margin-bottom: 10px;
+}
+
+.contact-message {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.contact-info {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-info li {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.warning {
+  font-size: 16px;
+  color: #e74c3c;
+  margin-top: 15px;
+}
+
+.back-button {
+  background-color: #25abe0;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 20px;
+}
+
+.back-button:hover {
+  background-color: #53bac3;
+  transform: scale(1.05);
+}
+
+.back-button:active {
+  transform: scale(0.95);
+}
