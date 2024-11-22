@@ -87,7 +87,7 @@ public class IdeaServiceImpl implements IdeaService {
 
     @Override
     public List<String> findAllDescriptions() {
-        return ideaRepository.findAllDescriptions();
+        return ideaRepository.findAllDescripcion();
     }
 
     /**
@@ -146,5 +146,15 @@ public class IdeaServiceImpl implements IdeaService {
                 proponente != null ? proponente.getEmail() : "Sin correo",
                 ideaMasSimilar.getDescripcion());
     }
+    // Implementación del método findByGerenciaIdAndEstadoAndFechaAprobacionNotNull
+    @Override
+    public List<Idea> findByGerenciaIdAndEstadoAndFechaAprobacionNotNull(Long gerenciaId, String estado) {
+        return ideaRepository.findByGerenciaIdAndEstadoAndFechaAprobacionNotNull(gerenciaId, estado);
+    }
 
+    @Override
+    public List<Idea> findIdeasByYearAndGerencia(Date startDate, Date endDate, Gerencia gerencia) {
+        return ideaRepository.findByFechaCreacionBetweenAndGerencia(startDate, endDate, gerencia);
+    }
+    
 }

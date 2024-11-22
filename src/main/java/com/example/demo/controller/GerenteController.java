@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,7 +51,7 @@ public class GerenteController {
         return "inicialGerente";  // Mostrar la vista listaIdeas.html
     }
 
-    @GetMapping("/ideas")
+    /*    @GetMapping("/ideas")
     public String mostrarTablaIdeas(@RequestParam(required = false) String search, Model model, HttpSession session) {
         // Verificar si el usuario tiene sesión activa
         Gerente gerente = (Gerente) session.getAttribute("gerente");
@@ -73,6 +74,34 @@ public class GerenteController {
         model.addAttribute("search", search);
         return "mostrarIdeasGerente"; // Renderiza la vista 'mostrarIdeas.html'
     }
+*/
+
+@GetMapping("/ideas")
+public String mostrarTablaIdeas(@RequestParam(required = false) String search, Model model, HttpSession session) {
+    // Verificar si el usuario tiene sesión activa
+    Gerente gerente = (Gerente) session.getAttribute("gerente");
+    if (gerente == null) {
+        return "redirect:/login"; // Redirige al login si no hay sesión
+    }
+
+    // Obtener la gerencia del gerente
+    Gerencia gerencia = gerente.getGerencia();
+    if (gerencia == null) {
+        model.addAttribute("error", "El gerente no tiene una gerencia asignada.");
+        return "error"; // Muestra una página de error o maneja el error
+    }
+
+    // Filtrar las ideas que pertenecen a la gerencia del gerente
+    // y que tengan una fecha de aprobación no nula
+    List<Idea> ideas = ideaService.findByGerenciaIdAndEstadoAndFechaAprobacionNotNull(gerencia.getId(), "Exito Innovador");
+
+    // Añadir datos al modelo para la vista Thymeleaf
+    model.addAttribute("gerente", gerente);
+    model.addAttribute("ideas", ideas);
+    model.addAttribute("search", search);
+
+    return "mostrarIdeasGerente"; // Renderiza la vista 'mostrarIdeas.html'
+}
 
     @GetMapping("/idea/{id}")
     public String informacionIdea(@PathVariable("id") Long id, Model model, HttpSession session) {
@@ -145,35 +174,37 @@ public class GerenteController {
     }
 
     @GetMapping("/dashboardF")
-    @ResponseBody
-    public ResponseEntity<Map<String, Object>> dashboardGerencia(@RequestParam(value = "startDate") String startDate,
-                                                        @RequestParam(value = "endDate") String endDate,
-                                                        HttpSession session) throws ParseException {
+    public ResponseEntity<List<IdeaGroupedByMonthDTO>> dashboardGerencia(@RequestParam(value = "year") String year,
+                                                                        HttpSession session) throws ParseException {
 
+        // Verificar si el gerente está en sesión
         Gerente gerente = (Gerente) session.getAttribute("gerente");
         if (gerente == null) {
-            return null;  // Si no hay sesión activa, puedes retornar un valor apropiado
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // Si no hay sesión activa, retornar un error 401
         }
 
-        // Parsear las fechas proporcionadas por el usuario
+        // Parsear el año proporcionado por el usuario
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date startOfMonth = sdf.parse(startDate);
-        Date endOfMonth = sdf.parse(endDate);
+        Date startDate = sdf.parse(year + "-01-01"); // Primer día del año
+        Date endDate = sdf.parse(year + "-12-31");   // Último día del año
+
+        // Imprimir las fechas de inicio y fin
+        System.out.println("Fecha de inicio: " + startDate);
+        System.out.println("Fecha de fin: " + endDate);
+
 
         // Obtener las ideas dentro del rango de fechas proporcionado
-        List<Idea> ideasPorMes = ideaService.findIdeasBetweenDates(startOfMonth, endOfMonth);
+        List<Idea> ideasPorAno = ideaService.findIdeasByYearAndGerencia(startDate, endDate, gerente.getGerencia());
 
         // Agrupar las ideas por mes
-        List<IdeaGroupedByMonthDTO> groupedIdeas = ideasPorMes.stream()
-            .collect(Collectors.groupingBy(idea -> getMonthFromDate(idea.getFechaCreacion())))
-            .entrySet().stream()
-            .map(entry -> new IdeaGroupedByMonthDTO(entry.getKey(), entry.getValue().size()))
-            .collect(Collectors.toList());
+        List<IdeaGroupedByMonthDTO> groupedIdeas = ideasPorAno.stream()
+                .collect(Collectors.groupingBy(idea -> getMonthFromDate(idea.getFechaCreacion())))
+                .entrySet().stream()
+                .map(entry -> new IdeaGroupedByMonthDTO(entry.getKey(), entry.getValue().size()))
+                .collect(Collectors.toList());
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("groupedIdeas", groupedIdeas);
-        
-        return ResponseEntity.ok(response);
+        // Retornar las ideas agrupadas como JSON
+        return ResponseEntity.ok(groupedIdeas);
     }
 
 

@@ -1,8 +1,8 @@
- // Obtener el gráfico y sus configuraciones
- let myChart;
+// Obtener el gráfico y sus configuraciones
+let myChart;
 
- // Función para crear o actualizar el gráfico
- function createOrUpdateChart(groupedIdeas) {
+// Función para crear o actualizar el gráfico
+function createOrUpdateChart(groupedIdeas) {
     // Los nombres de los meses en español
     const months = [
         'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -49,26 +49,35 @@
     window.chartInstance = new Chart(ctx, config);
 }
 
+// Manejar el envío del formulario
+document.getElementById('dateForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Evitar que el formulario se envíe de la manera tradicional
 
- // Manejar el envío del formulario
- document.getElementById('dateForm').addEventListener('submit', function(event) {
-     event.preventDefault();
+    const year = document.querySelector('[name="year"]').value;
 
-     const startDate = document.getElementById('startDate').value;
-     const endDate = document.getElementById('endDate').value;
+    // Validar si el año es correcto
+    if (!year || isNaN(year) || year.length !== 4) {
+        alert('Por favor ingrese un año válido.');
+        return;
+    }
 
-     // Hacer la llamada AJAX para obtener los datos filtrados
-     fetch(`/gerente/dashboardF?startDate=${startDate}&endDate=${endDate}`, {
-         method: 'GET',
-         headers: {
-             'Accept': 'application/json',  // Asegurarse de que la respuesta sea JSON
-         },
-     })
-     .then(response => response.json())  // Respuesta en formato JSON
-     .then(data => {
-         // Procesar la respuesta JSON y actualizar la gráfica
-         createOrUpdateChart(data.groupedIdeas);
-         console.log(data.groupedIdeas);
-     })
-     .catch(error => console.error('Error al obtener los datos:', error));
- });
+    // Hacer la solicitud GET al servidor
+    fetch(`/gerente/dashboardF?year=${year}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al obtener los datos');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Verificar si los datos son válidos antes de crear o actualizar el gráfico
+            if (data && Array.isArray(data)) {
+                createOrUpdateChart(data);  // Usar datos solo si son válidos
+            } else {
+                console.error('Formato de datos no válido:', data);
+            }
+        })
+        .catch(error => {
+            console.error('Error al obtener los datos:', error);
+        });
+});
