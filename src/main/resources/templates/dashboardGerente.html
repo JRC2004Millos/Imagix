@@ -53,12 +53,19 @@
         <!-- Formulario para seleccionar fechas -->
         <form action="/gerente/dashboardF" method="get" id="dateForm" class="mb-4">
             <div class="d-flex justify-content-center">
-                <input type="date" id="startDate"name="startDate" class="form-control" th:value="${startDate}" />
-                <span class="mx-2">a</span>
-                <input type="date" id="endDate" name="endDate" class="form-control" th:value="${endDate}" />
+                <!-- Selección del año -->
+                <select name="year" class="form-control">
+                    <!-- Generar años desde 2000 hasta el año actual -->
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <!-- Agrega más opciones si lo necesitas -->
+                </select>
                 <button type="submit" class="btn btn-primary mx-2">Filtrar</button>
             </div>
-        </form>
+        </form>        
         <!-- Canvas para el gráfico -->
         <div class="chart-container">
             <canvas id="myChart" width="400" height="200"></canvas>

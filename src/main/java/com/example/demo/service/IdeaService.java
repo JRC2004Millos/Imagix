@@ -30,10 +30,6 @@ public interface IdeaService {
 
     public List<Idea> findByFechaAprobacionIsNullAndGerenciaId(Long gerenciaId);
 
-    public List<String> findAllDescriptions();
-
-    public IdeaSimilarDTO calculateAllSimilarities(List<String> ideas, String descripcionSolucion);
-
     List<Idea> findByGerenciaAndEstado(Gerencia gerencia, String estado);
 
     List<Idea> findByGerenciaIdAndEstado(Long gerenciaId, String estado);
@@ -42,4 +38,12 @@ public interface IdeaService {
 
     // Método para filtrar las ideas entre dos fechas
     public List<Idea> findIdeasBetweenDates(Date startDate, Date endDate);
+
+    public List<Idea> findIdeasByYearAndGerencia(Date startDate, Date endDate, Gerencia gerencia);
+    
+    public IdeaSimilarDTO calculateAllSimilarities(List<String> descriptions, String nuevaDescripcion);
+    
+    public List<String> findAllDescriptions();
+
+    public List<Idea> findByGerenciaIdAndEstadoAndFechaAprobacionNotNull(Long gerenciaId, String estado);
 }

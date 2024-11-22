@@ -19,8 +19,6 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
 
     List<Idea> findByGerenciaIdAndEstado(Long gerenciaId, String estado);
 
-    Idea findByDescripcion(String descripcion);
-
     @Query("SELECT i FROM Idea i JOIN i.proponentes p WHERE p.id = :proponenteId")
     List<Idea> findIdeasByProponenteId(@Param("proponenteId") Long proponenteId);
 
@@ -30,9 +28,6 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
     @Query("SELECT i FROM Idea i JOIN i.proponentes p WHERE p.id = :proponenteId AND i.estadoImplementada = true")
     List<Idea> findIdeasByProponenteIdAndEstadoImplementadaIsTrue(Long proponenteId);
 
-    @Query("SELECT i.descripcion FROM Idea i")
-    List<String> findAllDescriptions();
-
     List<Idea> findByFechaAprobacionIsNullAndGerenciaId(Long gerenciaId);
 
     List<Idea> findByGerenciaId(Long gerenciaId);
@@ -41,5 +36,16 @@ public interface IdeaRepository extends JpaRepository<Idea, Long> {
 
     // Método para encontrar ideas entre dos fechas
     List<Idea> findByFechaCreacionBetween(Date startDate, Date endDate);
+
+    public List<Idea> findByFechaCreacionBetweenAndGerencia(Date startDate, Date endDate, Gerencia gerencia);
+
+    // Buscar ideas por gerencia y estado, donde la fecha de aprobación no sea null
+    @Query("SELECT i FROM Idea i WHERE i.gerencia.id = :gerenciaId AND i.estado = :estado AND i.fechaAprobacion IS NOT NULL")
+    List<Idea> findByGerenciaIdAndEstadoAndFechaAprobacionNotNull(Long gerenciaId, String estado);
+
+    @Query("SELECT i.descripcion FROM Idea i WHERE i.descripcion IS NOT NULL")
+    List<String> findAllDescripcion();
+
+    public Idea findByDescripcion(String string);
 
 }
