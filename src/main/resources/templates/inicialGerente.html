@@ -17,9 +17,9 @@
         </div>
         <nav>
             <div class="menu-container">
-                <a class="boton_menu" href="/gerente/dashboard" style="background-color: #25ABE0; color: antiquewhite;">Dashboard</a><br>
-                <a class="boton_menu" href="/gerente/ideas" style="background-color: #AACF3F; color: antiquewhite;">Ideas</a><br>
-                <a class="boton_menu" href="/gerente" style="background-color: #D61366; color: antiquewhite;">Inicio</a><br>
+                <a class="boton_menu" href="/gerente/dashboard" style="background-color: #D61366; color: antiquewhite; background-color: #25ABE0; border: none;">Dashboard</a><br>
+                <a class="boton_menu" href="/gerente/ideas" style="background-color: #D61366; color: antiquewhite; background-color: #AACF3F; border: none;">Ver Ideas</a><br>
+                <a class="boton_menu" href="/gerente" style="background-color: #D61366; color: antiquewhite; ">Inicio</a><br>
             </div>
             <ul>
                 <li>
@@ -47,26 +47,21 @@
 
     <div class="main-content">
         <div class="container mt-5">
-            <h1 class="text-center mb-4">¿Qué buscas hacer hoy?</h1>
-    
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="card text-white bg-success mb-3">
-                        <div class="card-header">Ideas Recientes</div>
-                        <div class="card-body">
-                            <h5 class="card-title" th:text="${aprobadas}">0</h5>
-                        </div>
-                    </div>
-                </div>      
-        </div>
-        
-        <div class="d-flex justify-content-center mt-4">
-            <button class="btn btn-primary btn-lg" onclick="location.href='/gerente/ideas'">
-                Ver Ideas
-            </button>
-        </div>
-        
+            <h1 class="text-center mb-4">¡Bienvenido <span th:text="${gerente.name}">!</span>!</h1>
 
+            <section class="button-container">
+                <div class="d-flex justify-content-center mt-4">
+                    <button id="opciones" class="btn btn-primary btn-lg" onclick="location.href='/gerente/ideas'" style="background-color: #AACF3F; border: none;">
+                      Ver Ideas
+                    </button>
+                </div>
+    
+                <div class="d-flex justify-content-center mt-4">
+                    <button id="opciones" class="btn btn-primary btn-lg" onclick="location.href='/gerente/dashboard'" style="background-color: #25ABE0; border: none;">
+                        Dashboard
+                    </button>
+                </div>
+            </section>
     </div>
 </body>
 </html>

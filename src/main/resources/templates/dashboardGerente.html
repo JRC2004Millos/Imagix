@@ -1,76 +1,112 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard de Financiera</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="/css/inicialGerente.css" />
-</head>
-<body>
-    <input type="checkbox" id="menuToggle" class="menu-toggle" hidden/>
+  </head>
+  <body>
+    <input type="checkbox" id="menuToggle" class="menu-toggle" hidden />
 
     <div class="sidebar" id="sidebar">
-        <div class="logo">
-            <img src="/images/imagix.png" alt="Imagix Logo">
+      <div class="logo">
+        <img src="/images/imagix.png" alt="Imagix Logo" />
+      </div>
+      <nav>
+        <div class="menu-container">
+          <a
+            class="boton_menu"
+            href="/gerente/dashboard"
+            style="background-color: #25abe0; color: antiquewhite"
+            >Dashboard</a
+          ><br />
+          <a
+            class="boton_menu"
+            href="/gerente/ideas"
+            style="background-color: #aacf3f; color: antiquewhite"
+            >Ideas</a
+          ><br />
+          <a
+            class="boton_menu"
+            href="/gerente"
+            style="background-color: #d61366; color: antiquewhite"
+            >Inicio</a
+          ><br />
         </div>
-        <nav>
-            <div class="menu-container">
-                <a class="boton_menu" href="/gerente/dashboard" style="background-color: #25ABE0; color: antiquewhite;">Dashboard</a><br>
-                <a class="boton_menu" href="/gerente/ideas" style="background-color: #AACF3F; color: antiquewhite;">Ideas</a><br>
-                <a class="boton_menu" href="/gerente" style="background-color: #D61366; color: antiquewhite;">Inicio</a><br>
-            </div>
-            <ul>
-                <li>
-                    <div class="card-client">
-                        <div class="user-picture">
-                            <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M224 256c70.7 0 128-57.31 128-128S153.3 0 96 128 153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3 448 381.6 370.4 304 274.7 304z"></path>
-                            </svg>
-                        </div>
-                        <p class="name-client" th:text="${gerente.name}">Nombre Usuario</p>
-                    </div>
-                </li>
-            </ul>
-        </nav>        
-
-
-        <button class="Btn" onclick="location.href='/login'">
-            <div class="sign">
-                <svg viewBox="0 0 512 512">
-                    <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+        <ul>
+          <li>
+            <div class="card-client">
+              <div class="user-picture">
+                <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M224 256c70.7 0 128-57.31 128-128S153.3 0 96 128 153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3 448 381.6 370.4 304 274.7 304z"
+                  ></path>
                 </svg>
+              </div>
+              <p class="name-client" th:text="${gerente.name}">
+                Nombre Usuario
+              </p>
             </div>
-            <div class="text">Cerrar Sesión</div>
-        </button>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="Btn" onclick="location.href='/login'">
+        <div class="sign">
+          <svg viewBox="0 0 512 512">
+            <path
+              d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
+            ></path>
+          </svg>
+        </div>
+        <div class="text">Cerrar Sesión</div>
+      </button>
     </div>
 
     <div class="main-content">
-        <h1 class="text-center mb-4">Dashboard de <span th:text="${nombreGerencia}">Gerencia</span></h1>
-        
-        <!-- Formulario para seleccionar fechas -->
-        <form action="/gerente/dashboardF" method="get" id="dateForm" class="mb-4">
-            <div class="d-flex justify-content-center">
-                <!-- Selección del año -->
-                <select name="year" class="form-control">
-                    <!-- Generar años desde 2000 hasta el año actual -->
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                    <!-- Agrega más opciones si lo necesitas -->
-                </select>
-                <button type="submit" class="btn btn-primary mx-2">Filtrar</button>
-            </div>
-        </form>        
-        <!-- Canvas para el gráfico -->
-        <div class="chart-container">
-            <canvas id="myChart" width="400" height="200"></canvas>
+      <h1 class="text-center mb-4">
+        Dashboard de <span th:text="${nombreGerencia}">Gerencia</span>
+      </h1>
+
+      <!-- Formulario para seleccionar fechas -->
+      <!-- Formulario para seleccionar fechas -->
+      <form
+        action="/gerente/dashboardF"
+        method="get"
+        id="dateForm"
+        class="mb-4"
+      >
+        <div class="d-flex flex-column align-items-center">
+          <!-- Selección del año -->
+          <select name="year" class="form-control mb-2">
+            <!-- Generar años desde 2000 hasta el año actual -->
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <!-- Agrega más opciones si lo necesitas -->
+          </select>
+          <!-- Botón para filtrar -->
+          <button type="submit" class="btn btn-primary">Filtrar</button>
         </div>
+      </form>
+
+      <!-- Canvas para el gráfico -->
+      <div class="chart-container">
+        <canvas id="myChart" width="800" height="500"></canvas>
+      </div>
     </div>
-</body>
-<script th:src="@{/js/dashboardGerente.js}"></script>
+  </body>
+  <script th:src="@{/js/dashboardGerente.js}"></script>
 </html>
